@@ -31,7 +31,28 @@ class CreateEvent extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("api/events", {});
+
+    axios
+      .post("/api/events", {
+        title: this.state.title,
+        description: this.state.description,
+        image: this.state.image,
+        location: this.state.location,
+        street: this.state.street,
+        city: this.state.city,
+        country: this.state.country,
+      })
+      .then(() => {
+        this.setState({
+          title: "",
+          description: "",
+          image: "",
+          location: "",
+          street: "",
+          city: "",
+          country: "",
+        });
+      });
   };
 
   render() {
@@ -62,7 +83,7 @@ class CreateEvent extends Component {
             name="description"
             id="description"
             cols="30"
-            rows="10"
+            rows="8"
             value={this.state.description}
             onChange={this.handleChange}
           ></textarea>
