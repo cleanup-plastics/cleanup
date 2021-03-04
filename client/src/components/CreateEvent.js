@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 // import CountriesDropdown from "./CountriesDropdown";
+import axios from "axios";
 
 class CreateEvent extends Component {
   state = {
@@ -13,13 +14,24 @@ class CreateEvent extends Component {
     street: "",
     city: "",
     country: "",
-    //should we include the coordinates in the form?
-    coordinates: [Number],
   };
 
-  onChange = () => {};
+  handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    console.log("changed event:", name);
 
-  handleSubmit = () => {};
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post('api/events', {
+
+    })
+  };
 
   render() {
     return (
