@@ -10,10 +10,11 @@ class Events extends Component {
     this.getData();
   }
 
-  getData = () => {
+  getData =  () => {
     axios
       .get("/api/events")
       .then((response) => {
+       
         this.setState({
           events: response.data,
         });
