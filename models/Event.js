@@ -1,21 +1,21 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = require("mongoose");
 
 const eventSchema = new Schema({
-  // type: String,
   title: String,
-  date: String,
   description: String,
-  // owner: {
-  // 	type: Schema.Types.ObjectId,
-  // 	ref: "User"
-  // },
+  imagePath: String,
+  imageName: String,
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   location: String,
   street: String,
   city: String,
   country: String,
-  // coordinates: [Number]
-})
+  coordinates: [Number],
+});
 
-const Event = mongoose.model("Event", eventSchema);
+const Event = model("Event", eventSchema);
+
 module.exports = Event;
