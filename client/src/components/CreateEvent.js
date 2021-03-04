@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 // import CountriesDropdown from "./CountriesDropdown";
 import axios from "axios";
+import countries from "../countries.json";
 
 class CreateEvent extends Component {
   state = {
     title: "",
     description: "",
-    imagePath: "",
-    imageName: "",
+    image: "",
+    //where to use cloudinary method?
+    // imagePath: "",
+    // imageName: "",
     //use userID?
     //owner: userID,
     location: "",
@@ -28,12 +31,18 @@ class CreateEvent extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('api/events', {
-
-    })
+    axios.post("api/events", {});
   };
 
   render() {
+    const countryOptions = countries.map((country) => {
+      return (
+        <option value={country} key={country}>
+          {country}
+        </option>
+      );
+    });
+
     return (
       <div>
         <h1>Create a new Event!</h1>
@@ -57,8 +66,6 @@ class CreateEvent extends Component {
             value={this.state.description}
             onChange={this.handleChange}
           ></textarea>
-
-          {/* Image --> how to name imagepath and imagename in state/cloudinary? */}
 
           <label htmlFor="image">Image: </label>
           <input
@@ -96,6 +103,15 @@ class CreateEvent extends Component {
           />
 
           <label htmlFor="country">Country: </label>
+          <select
+            name="country"
+            id="country"
+            value={this.state.country}
+            onChange={this.handleChange}
+          >
+            <option value="">All</option>
+            {countryOptions}
+          </select>
 
           {/* refer to long list of option values in another component: */}
           {/* <CountriesDropdown /> */}
