@@ -48,9 +48,7 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-  console.log('step 3')
   passport.authenticate('local', (err, user) => {
-    console.log('user', user)
     if (err) {
       return res.status(500).json({ message: 'Error while attempting to login' })
     }

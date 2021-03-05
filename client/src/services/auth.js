@@ -12,7 +12,6 @@ const signup = (username, email, password) => {
 }
 
 const login = (username, password) => {
-  console.log('step 2', username, password)
   return axios.
     post('/api/auth/login', { username, password })
     .then(response => {

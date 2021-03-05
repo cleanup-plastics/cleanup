@@ -39,7 +39,6 @@ export default class Login extends Component {
       .catch(err=> console.log(err))
   }
   render() {
-    console.log('step 1', this.state)
     return (
       <div>
         <h2>Login</h2>
