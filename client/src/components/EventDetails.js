@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class EventDetails extends Component {
   render() {
-    console.log(this.props.event);
+    console.log('logging time:', this.props.event);
     return (
       <div>
         <p>{this.props.event.description}</p>

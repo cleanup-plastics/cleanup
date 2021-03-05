@@ -29,6 +29,7 @@ class Events extends Component {
 
   render() {
     const eventList = this.state.events.map((event) => {
+      console.log('logging the event:', event)
       return (
         <EventItem event={event}/>
       );

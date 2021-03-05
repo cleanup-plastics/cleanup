@@ -32,11 +32,21 @@ router.post("/events", (req, res, next) => {
     description,
     location,
     street,
+    time,
     city,
     country,
   } = req.body;
   console.log("hello from backend:", req.body.title);
-  Event.create({ title, date, description, location, street, city, country })
+  Event.create({
+    title,
+    date,
+    description,
+    location,
+    street,
+    city,
+    time,
+    country,
+  })
     .then((event) => {
       res.status(201).json(event);
     })

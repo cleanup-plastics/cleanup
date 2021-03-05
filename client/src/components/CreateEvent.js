@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import countries from "../countries.json";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class CreateEvent extends Component {
   state = {
@@ -55,11 +56,13 @@ class CreateEvent extends Component {
           city: "",
           country: "",
         });
+      })
+      .then(() => {
+        <Redirect to="/events" />;
       });
   };
 
   render() {
-
     const countryOptions = countries.map((country) => {
       return (
         <option value={country} key={country}>
@@ -80,6 +83,7 @@ class CreateEvent extends Component {
             name="title"
             value={this.state.title}
             onChange={this.handleChange}
+            required
           />
 
           <label htmlFor="description">Description: </label>
@@ -99,16 +103,17 @@ class CreateEvent extends Component {
             name="date"
             value={this.state.date}
             onChange={this.handleChange}
+            required
           ></input>
 
           <label htmlFor="time">Time: </label>
           <input
-            type="text"
+            type="time"
             id="time"
             name="time"
-            placeholder="use format 14:00"
             value={this.state.time}
             onChange={this.handleChange}
+            required
           ></input>
 
           <label htmlFor="image">Image: </label>
