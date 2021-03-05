@@ -3,12 +3,13 @@ import axios from "axios";
 import countries from "../countries.json";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import service from "../api/service"
 
 class CreateEvent extends Component {
   state = {
     title: "",
     description: "",
-    image: "",
+    imageUrl:"",
     //use userID?
     //owner: userID,
     time: "",
@@ -29,14 +30,44 @@ class CreateEvent extends Component {
     });
   };
 
+  handleFileUpload = e => {
+    console.log('The file to be uploaded is: ', e.target.files[0]);
+ 
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+    uploadData.append('imageUrl', e.target.files[0]);
+ 
+    service
+      .handleUpload(uploadData)
+      .then(response => {
+        // console.log('response is: ', response);
+        // after the console.log we can see that response carries 'secure_url' which we can use to update the state
+        this.setState({ imageUrl: response.secure_url });
+      })
+      .catch(err => {
+        console.log('Error while uploading the file: ', err);
+      });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
+
+    service
+      .createEvent(this.state)
+      .then(res => {
+        console.log('added: ', res);
+        // here you would redirect to some other page
+      })
+      .catch(err => {
+        console.log('Error while adding the thing: ', err);
+      });
 
     axios
       .post("/api/events", {
         title: this.state.title,
         description: this.state.description,
-        image: this.state.image,
+        imageUrl: this.state.imageUrl,
         location: this.state.location,
         street: this.state.street,
         city: this.state.city,
@@ -48,9 +79,9 @@ class CreateEvent extends Component {
         this.setState({
           title: "",
           description: "",
-          image: "",
           time: "",
           date: "",
+          imageUrl: "",
           location: "",
           street: "",
           city: "",
@@ -79,7 +110,7 @@ class CreateEvent extends Component {
       <div>
         <h1>Create a new event!</h1>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={event => this.handleSubmit(event)}>
           <label htmlFor="title">Title: </label>
           <input
             type="text"
@@ -125,8 +156,8 @@ class CreateEvent extends Component {
             type="file"
             id="image"
             name="image"
-            value={this.state.image}
-            onChange={this.handleChange}
+            // value={this.state.image}
+            onChange={e => this.handleFileUpload(e)}
           />
 
           <label htmlFor="location">Name of location: </label>
