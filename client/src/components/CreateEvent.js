@@ -17,12 +17,12 @@ class CreateEvent extends Component {
     street: "",
     city: "",
     country: "",
+    redirect: null,
   };
 
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    // console.log("changed event:", name);
 
     this.setState({
       [name]: value,
@@ -58,7 +58,7 @@ class CreateEvent extends Component {
         });
       })
       .then(() => {
-        <Redirect to="/events" />;
+        this.setState({ redirect: "/events" });
       });
   };
 
@@ -70,6 +70,10 @@ class CreateEvent extends Component {
         </option>
       );
     });
+
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
 
     return (
       <div>
