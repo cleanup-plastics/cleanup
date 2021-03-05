@@ -2,10 +2,11 @@ import React, { Component } from "react";
 
 class EventDetails extends Component {
   render() {
+    console.log(this.props.event);
     return (
       <div>
         <p>{this.props.event.description}</p>
-        <p>{this.props.event.date}</p>
+        <p>Date: {this.props.event.date}</p>
         <p>Time: {this.props.event.time}</p>
         <p>Location: {this.props.event.location}</p>
         <p>Street: {this.props.event.street}</p>

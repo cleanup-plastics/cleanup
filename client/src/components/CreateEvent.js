@@ -59,7 +59,6 @@ class CreateEvent extends Component {
   };
 
   render() {
-    console.log(this.state);
 
     const countryOptions = countries.map((country) => {
       return (

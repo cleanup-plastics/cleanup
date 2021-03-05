@@ -4,12 +4,14 @@ import EventDetails from "./EventDetails";
 class EventItem extends Component {
   state = {
     clickedEventId: "",
+    toggled: false,
   };
 
   toggleEventDetails = (e) => {
     e.preventDefault();
-    this.setState(() => ({
+    this.setState((state) => ({
       clickedEventId: e.target.eventId.value,
+      toggled: !state.toggled,
     }));
   };
 
@@ -23,7 +25,7 @@ class EventItem extends Component {
           <input type="hidden" name="eventId" value={this.props.event._id} />
           <button>Show details</button>
         </form>
-        {this.state.clickedEventId && <EventDetails event={this.props.event} />}
+        {this.state.toggled && <EventDetails event={this.props.event} />}
       </div>
     );
   }
