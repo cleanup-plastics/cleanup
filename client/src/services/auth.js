@@ -12,9 +12,11 @@ const signup = (username, email, password) => {
 }
 
 const login = (username, password) => {
+  console.log('step 2', username, password)
   return axios.
     post('/api/auth/login', { username, password })
     .then(response => {
+      console.log('response data from login',response.data)
       return response.data
     })
     .catch(err => {

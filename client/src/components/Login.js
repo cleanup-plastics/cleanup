@@ -30,14 +30,16 @@ export default class Login extends Component {
             password: ''
           })
         } else {
-          console.log(user)
+          console.log('frontent used', user)
           // put the user object in the state of App.js
           this.props.setUser(user);
           this.props.history.push('/events');
         }
       })
+      .catch(err=> console.log(err))
   }
   render() {
+    console.log('step 1', this.state)
     return (
       <div>
         <h2>Login</h2>
