@@ -30,9 +30,10 @@ export default class Signup extends Component {
             password: ''
           })
         } else {
-          // put the response from the server in the state of App.js
           console.log(user)
+           // put the response from the server in the state of App.js
           this.props.setUser(user);
+          //redirect the logged in user to the events page
           this.props.history.push('/events');
         }
       })
