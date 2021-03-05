@@ -1,5 +1,6 @@
 const Event = require("../models/Event");
 const router = require("express").Router();
+const { uploader, cloudinary } = require('../config/cloudinary');
 
 // to get all the events
 
@@ -28,7 +29,9 @@ router.get("/events/:id", (req, res, next) => {
 
 // to update an event
 
-router.put("/events/:id", (req, res, next) => {
+router.put("/events/:id", uploader.single("image"), (req, res, next) => {
+  // console.log(req.file);
+  // console.log(req.params.id);
   const {
     title,
     date,
@@ -36,8 +39,11 @@ router.put("/events/:id", (req, res, next) => {
     location,
     street,
     city,
-    country,
+    country
   } = req.body;
+  const imagePath = req.file.path
+  const imageName = req.file.originalname
+  const publicId = req.file.filename
   Event.findByIdAndUpdate(req.params.id, {
     title,
     date,
@@ -45,12 +51,12 @@ router.put("/events/:id", (req, res, next) => {
     location,
     street,
     city,
-    country
+    country,
+    imagePath,
+    imageName,
+    publicId
   }, 
-  {
-    new:true
-  }
-  )
+  { new:true })
   .then(event => {
     res.status(200).json(event)
   })
@@ -64,6 +70,9 @@ router.put("/events/:id", (req, res, next) => {
 router.delete("/events/:id", (req, res, next) => {
   Event.findByIdAndDelete(req.params.id)
   .then(event => {
+    if (event.imagePath) {
+      cloudinary.uploader.destroy(event.publicId);
+    }
     res.status(200).json({message: "event deleted"})
   })
   .catch(err => {
@@ -73,7 +82,8 @@ router.delete("/events/:id", (req, res, next) => {
 
 // to create an event
 
-router.post("/events", (req, res, next) => {
+router.post("/events", uploader.single("image"), (req, res, next) => {
+  // console.log(req.file);
   const {
     title,
     date,
@@ -83,6 +93,9 @@ router.post("/events", (req, res, next) => {
     city,
     country,
   } = req.body;
+  const imagePath = req.file.path
+  const imageName = req.file.originalname
+  const publicId = req.file.filename
   // console.log("hello from backend:", req.body.title);
   Event.create({ 
     title, 
@@ -91,7 +104,10 @@ router.post("/events", (req, res, next) => {
     location, 
     street, 
     city, 
-    country 
+    country,
+    imagePath,
+    imageName,
+    publicId 
     })
     .then((event) => {
       res.status(201).json(event);
@@ -100,8 +116,5 @@ router.post("/events", (req, res, next) => {
       next(err);
     });
 });
-
-// You put the next routes here 👇
-// example: router.use("/auth", authRoutes)
 
 module.exports = router;
