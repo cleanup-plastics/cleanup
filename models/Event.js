@@ -9,6 +9,8 @@ const eventSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  date: Date,
+  time: String,
   location: String,
   street: String,
   city: String,

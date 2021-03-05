@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import EventDetails from "./EventDetails";
+
+import EventItem from "./EventItem";
 
 class Events extends Component {
   state = {
-    events: [],
-    showDetails: false,
+    events: [], 
   };
 
   componentDidMount() {
@@ -26,22 +26,11 @@ class Events extends Component {
       });
   };
 
-  toggleEventDetails = () => {
-    this.setState((state) => ({
-      showDetails: !state.showDetails,
-    }));
-  };
 
   render() {
     const eventList = this.state.events.map((event) => {
       return (
-        <div key={event._id}>
-          <h2>{event.title}</h2>
-          <p>Country: {event.country}</p>
-          <p>City: {event.city}</p>
-          <button onClick={this.toggleEventDetails}>Show details</button>
-          {this.state.showDetails && <EventDetails {...this.state} />}
-        </div>
+        <EventItem event={event}/>
       );
     });
 

@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class EventDetails extends Component {
   render() {
-    console.log(this.props.events.title);
-
-    //map over events to show details:
     return (
       <div>
-        <p>Event details</p>
-        <p>{this.props.events[0].title}</p>
+        <p>{this.props.event.description}</p>
+        <p>Location: {this.props.event.location}</p>
+        <p>{this.props.event.street}</p>
+        <p>{this.props.event.time}</p>
+        <p>{this.props.event.date}</p>
+        <p>{this.props.event.image}</p>
       </div>
     );
   }

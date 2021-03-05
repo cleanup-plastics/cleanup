@@ -8,11 +8,10 @@ class CreateEvent extends Component {
     title: "",
     description: "",
     image: "",
-    //where to use cloudinary method?
-    // imagePath: "",
-    // imageName: "",
     //use userID?
     //owner: userID,
+    time: "",
+    date: "",
     location: "",
     street: "",
     city: "",
@@ -22,7 +21,7 @@ class CreateEvent extends Component {
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    console.log("changed event:", name);
+   // console.log("changed event:", name);
 
     this.setState({
       [name]: value,
@@ -40,6 +39,8 @@ class CreateEvent extends Component {
         location: this.state.location,
         street: this.state.street,
         city: this.state.city,
+        time: this.state.time,
+        date: this.state.date,
         country: this.state.country,
       })
       .then(() => {
@@ -47,6 +48,8 @@ class CreateEvent extends Component {
           title: "",
           description: "",
           image: "",
+          time: "",
+          date: "",
           location: "",
           street: "",
           city: "",
@@ -89,6 +92,25 @@ class CreateEvent extends Component {
             value={this.state.description}
             onChange={this.handleChange}
           ></textarea>
+
+          <label htmlFor="date">Date: </label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            value={this.state.date}
+            onChange={this.handleChange}
+          ></input>
+
+          <label htmlFor="time">Time: </label>
+          <input
+            type="text"
+            id="time"
+            name="time"
+            placeholder="use format 14:00"
+            value={this.state.time}
+            onChange={this.handleChange}
+          ></input>
 
           <label htmlFor="image">Image: </label>
           <input
