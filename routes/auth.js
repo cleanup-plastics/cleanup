@@ -63,12 +63,13 @@ router.post('/login', (req, res, next) => {
       }
       return res.status(200).json(user);
     })
-  })
+  })(req, res)
 });
 
 router.delete('/logout', (req, res) => {
   // passport method to log out
   req.logout();
+  req.session.destroy()
   console.log('successful logout')
   res.status(200).json({ message: 'Successfully logged out' });
 })

@@ -25,9 +25,9 @@ class App extends Component {
       <div>
       <Navbar user={this.state.user} setUser={this.setUser} />
 
-        <Route exact path="/events" 
-        //  component={Events} 
-          render={props => {
+        <Route exact path="/events"  
+         // component={Events} 
+           render={props => {
             if (this.state.user) {
               return <Events {...props} />
             } else return <Redirect to='/login' />
