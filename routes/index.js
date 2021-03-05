@@ -80,10 +80,25 @@ router.delete("/events/:id", (req, res, next) => {
   })
 })
 
+// to post to Cloudinary
+
+router.post('/upload', uploader.single('imageUrl'), (req, res, next) => {
+  // console.log('file is: ', req.file)
+ 
+  if (!req.file) {
+    next(new Error('No file uploaded!'));
+    return;
+  }
+  // get secure_url from the file object and save it in the
+  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
+ 
+  res.json({ secure_url: req.file.path });
+});
+
 // to create an event
 
-router.post("/events", uploader.single("image"), (req, res, next) => {
-  // console.log(req.file);
+router.post("/events", uploader.single("imageUrl"), (req, res, next) => {
+  // console.log("IS THIS THE FILE?", req.file)
   const {
     title,
     date,
@@ -92,10 +107,8 @@ router.post("/events", uploader.single("image"), (req, res, next) => {
     street,
     city,
     country,
+    imageUrl
   } = req.body;
-  const imagePath = req.file.path
-  const imageName = req.file.originalname
-  const publicId = req.file.filename
   // console.log("hello from backend:", req.body.title);
   Event.create({ 
     title, 
@@ -105,9 +118,7 @@ router.post("/events", uploader.single("image"), (req, res, next) => {
     street, 
     city, 
     country,
-    imagePath,
-    imageName,
-    publicId 
+    imageUrl
     })
     .then((event) => {
       res.status(201).json(event);
