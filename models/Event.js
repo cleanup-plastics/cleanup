@@ -9,7 +9,7 @@ const eventSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  date: Date,
+  date: String,
   time: String,
   location: String,
   street: String,

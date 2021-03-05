@@ -21,7 +21,7 @@ class CreateEvent extends Component {
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-   // console.log("changed event:", name);
+    // console.log("changed event:", name);
 
     this.setState({
       [name]: value,
