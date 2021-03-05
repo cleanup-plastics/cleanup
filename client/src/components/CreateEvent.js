@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-// import CountriesDropdown from "./CountriesDropdown";
 import axios from "axios";
 import countries from "../countries.json";
+import { Link } from "react-router-dom";
 
 class CreateEvent extends Component {
   state = {
@@ -68,7 +68,7 @@ class CreateEvent extends Component {
 
     return (
       <div>
-        <h1>Create a new Event!</h1>
+        <h1>Create a new event!</h1>
 
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="title">Title: </label>
@@ -136,11 +136,10 @@ class CreateEvent extends Component {
             {countryOptions}
           </select>
 
-          {/* refer to long list of option values in another component: */}
-          {/* <CountriesDropdown /> */}
-
           <button type="submit">Post this event!</button>
         </form>
+
+        <Link to={"/events"}>Back to events</Link>
       </div>
     );
   }

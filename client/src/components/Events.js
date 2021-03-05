@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Events extends Component {
   state = {
@@ -10,11 +11,10 @@ class Events extends Component {
     this.getData();
   }
 
-  getData =  () => {
+  getData = () => {
     axios
       .get("/api/events")
       .then((response) => {
-       
         this.setState({
           events: response.data,
         });
@@ -38,7 +38,12 @@ class Events extends Component {
     return (
       <div>
         <h1>Events</h1>
-        {eventList}
+
+        <button>
+          <Link to={"/events/create"}>Create an event!</Link>{" "}
+        </button>
+
+        <div>{eventList}</div>
       </div>
     );
   }
