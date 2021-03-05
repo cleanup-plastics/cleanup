@@ -105,6 +105,7 @@ router.post("/events", uploader.single("imageUrl"), (req, res, next) => {
     description,
     location,
     street,
+    time,
     city,
     country,
     imageUrl
@@ -116,7 +117,8 @@ router.post("/events", uploader.single("imageUrl"), (req, res, next) => {
     description, 
     location, 
     street, 
-    city, 
+    city,
+    time,
     country,
     imageUrl
     })

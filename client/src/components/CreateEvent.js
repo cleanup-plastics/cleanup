@@ -1,30 +1,29 @@
 import React, { Component } from "react";
-// import CountriesDropdown from "./CountriesDropdown";
 import axios from "axios";
 import countries from "../countries.json";
+import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import service from "../api/service"
 
 class CreateEvent extends Component {
   state = {
     title: "",
     description: "",
-    // image: "",
     imageUrl:"",
-    //where to use cloudinary method?
-    // imagePath: "",
-    // imageName: "",
     //use userID?
     //owner: userID,
+    time: "",
+    date: "",
     location: "",
     street: "",
     city: "",
     country: "",
+    redirect: null,
   };
 
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    console.log("changed event:", name);
 
     this.setState({
       [name]: value,
@@ -72,24 +71,29 @@ class CreateEvent extends Component {
         location: this.state.location,
         street: this.state.street,
         city: this.state.city,
+        time: this.state.time,
+        date: this.state.date,
         country: this.state.country,
       })
       .then(() => {
         this.setState({
           title: "",
           description: "",
+          time: "",
+          date: "",
           imageUrl: "",
           location: "",
           street: "",
           city: "",
           country: "",
         });
+      })
+      .then(() => {
+        this.setState({ redirect: "/events" });
       });
   };
 
   render() {
-    console.log(this.state);
-
     const countryOptions = countries.map((country) => {
       return (
         <option value={country} key={country}>
@@ -98,9 +102,13 @@ class CreateEvent extends Component {
       );
     });
 
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
+
     return (
       <div>
-        <h1>Create a new Event!</h1>
+        <h1>Create a new event!</h1>
 
         <form onSubmit={event => this.handleSubmit(event)}>
           <label htmlFor="title">Title: </label>
@@ -110,6 +118,7 @@ class CreateEvent extends Component {
             name="title"
             value={this.state.title}
             onChange={this.handleChange}
+            required
           />
 
           <label htmlFor="description">Description: </label>
@@ -121,6 +130,26 @@ class CreateEvent extends Component {
             value={this.state.description}
             onChange={this.handleChange}
           ></textarea>
+
+          <label htmlFor="date">Date: </label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            value={this.state.date}
+            onChange={this.handleChange}
+            required
+          ></input>
+
+          <label htmlFor="time">Time: </label>
+          <input
+            type="time"
+            id="time"
+            name="time"
+            value={this.state.time}
+            onChange={this.handleChange}
+            required
+          ></input>
 
           <label htmlFor="image">Image: </label>
           <input
@@ -168,11 +197,10 @@ class CreateEvent extends Component {
             {countryOptions}
           </select>
 
-          {/* refer to long list of option values in another component: */}
-          {/* <CountriesDropdown /> */}
-
           <button type="submit">Post this event!</button>
         </form>
+
+        <Link to={"/events"}>Back to events</Link>
       </div>
     );
   }

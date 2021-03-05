@@ -1,20 +1,22 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
+import EventItem from "./EventItem";
 
 class Events extends Component {
   state = {
-    events: [],
+    events: [], 
   };
 
   componentDidMount() {
     this.getData();
   }
 
-  getData =  () => {
+  getData = () => {
     axios
       .get("/api/events")
       .then((response) => {
-       
         this.setState({
           events: response.data,
         });
@@ -24,21 +26,24 @@ class Events extends Component {
       });
   };
 
+
   render() {
     const eventList = this.state.events.map((event) => {
+      console.log('logging the event:', event)
       return (
-        <div key={event._id}>
-          <h2>{event.title}</h2>
-          <p>Country: {event.country}</p>
-          <p>City: {event.city}</p>
-        </div>
+        <EventItem event={event}/>
       );
     });
 
     return (
       <div>
         <h1>Events</h1>
-        {eventList}
+
+        <button>
+          <Link to={"/events/create"}>Create an event!</Link>
+        </button>
+
+        <div>{eventList}</div>
       </div>
     );
   }
