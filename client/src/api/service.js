@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 const service = axios.create({
   baseURL: 'http://localhost:5005/api'
   // withCredentials: true // => you might need this when having the users in the app
@@ -27,8 +26,8 @@ const createEvent = (event) => {
     .catch(errorHandler);
 }
 
-export default {
-  service,
-  handleUpload,
-  createEvent
-};
+const apiService = {
+  service, handleUpload, createEvent
+}
+
+export default apiService;

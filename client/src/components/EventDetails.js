@@ -10,7 +10,7 @@ class EventDetails extends Component {
         <p>Time: {this.props.event.time}</p>
         <p>Location: {this.props.event.location}</p>
         <p>Street: {this.props.event.street}</p>
-        <img src={this.props.event.imageUrl}/>
+        <img src={this.props.event.imageUrl} alt="Event's pic" />
       </div>
     );
   }
