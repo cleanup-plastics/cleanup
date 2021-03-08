@@ -2,6 +2,7 @@ import "./App.css";
 import { Route, Redirect } from "react-router-dom";
 import CreateEvent from "./components/CreateEvent";
 import Events from "./components/Events";
+import EditEvent from "./components/EditEvent";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
@@ -37,6 +38,12 @@ class App extends Component {
           exact
           path="/events/create"
           render={(props) => <CreateEvent user={this.state.user} {...props} />}
+        />
+
+        <Route
+          exact
+          path="/events/:id/edit"
+          render={(props) => <EditEvent {...props} />}
         />
 
         <Route

@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
-//import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class EventDetails extends Component {
-  // state = {
-  //   redirect: null,
-  // };
-
   deleteEvent = () => {
     const eventID = this.props.event._id;
     axios
       .delete(`/api/events/${eventID}`)
-      // .then(() => {
-      //   return this.props.props.props.history.push("/events");
-      // })
+
       .then(() => {
-      this.props.getData();
+        this.props.getData();
       })
       .catch((err) => {
         console.log(err);
@@ -23,12 +17,7 @@ class EventDetails extends Component {
   };
 
   render() {
-    console.log("logging props:", this.props.props.props);
-
-    // if (this.state.redirect) {
-    //   return <Redirect to={this.state.redirect} />;
-    // }
-
+   // console.log(this.props.event)
     return (
       <div>
         <p>{this.props.event.description}</p>
@@ -43,7 +32,9 @@ class EventDetails extends Component {
         />
         {this.props.userID === this.props.event.owner && (
           <div>
-            <button>Edit</button>
+            <button>
+              <Link to={`/events/${this.props.event._id}/edit`}>Edit</Link>
+            </button>
             <button onClick={this.deleteEvent}>Delete</button>
           </div>
         )}
