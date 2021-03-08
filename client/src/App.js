@@ -5,6 +5,8 @@ import Events from "./components/Events";
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import Profile from './components/Profile';
+import EditProfile from './components/EditProfile';
 
 import React, { Component } from "react";
 
@@ -51,6 +53,18 @@ class App extends Component {
           exact
           path="/login"
           render={(props) => <Login setUser={this.setUser} {...props} />}
+        />
+
+        <Route
+          exact
+          path="/profile/:id"
+          render={(props) => <Profile user={this.state.user} />}
+        />
+
+        <Route
+          exact
+          path="/profile/user/:id"
+          render={(props) => <EditProfile user={this.state.user} />}
         />
       </div>
     );
