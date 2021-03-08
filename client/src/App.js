@@ -33,7 +33,10 @@ class App extends Component {
             } else return <Redirect to='/login' />
           }}
         />
-        <Route exact path="/events/create" component={CreateEvent} />
+        <Route exact path="/events/create" 
+        render={(props) => <CreateEvent user={this.state.user}/> }
+        />
+        
         <Route
           exact path='/signup'
           // 'render prop' to pass props in routing

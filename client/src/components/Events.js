@@ -3,20 +3,25 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import EventItem from "./EventItem";
+import Map from './Map'
 
 class Events extends Component {
+
   state = {
     events: [], 
   };
 
-  componentDidMount() {
-    this.getData();
+
+   componentDidMount() {
+    this.getData()
+    console.log('the event componentdidmount')
   }
 
   getData = () => {
     axios
       .get("/api/events")
       .then((response) => {
+        console.log('response from API')
         this.setState({
           events: response.data,
         });
@@ -34,6 +39,7 @@ class Events extends Component {
         <EventItem event={event}/>
       );
     });
+    console.log("state at events.js", this.state.events)
 
     return (
       <div>
@@ -44,6 +50,7 @@ class Events extends Component {
         </button>
 
         <div>{eventList}</div>
+        <div><Map events={this.state.events}/></div>
       </div>
     );
   }

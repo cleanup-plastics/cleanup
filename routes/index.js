@@ -111,7 +111,7 @@ router.post("/events", /*uploader.single("imageUrl"),*/ (req, res, next) => {
     country,
     imageUrl
   } = req.body;
-  const geocoderUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + location+'%20'+city +'%20'+country+'.json?access_token='+'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
+  const geocoderUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + street+'%20'+city +'%20'+country+'.json?access_token='+'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
   console.log(geocoderUrl)
   axios.get(geocoderUrl)
   .then(response => {
@@ -126,7 +126,8 @@ router.post("/events", /*uploader.single("imageUrl"),*/ (req, res, next) => {
       time,
       country,
       coordinates,
-      imageUrl
+      imageUrl,
+      owner: req.user._id
       })
   })
   // console.log("hello from backend:", req.body.title);

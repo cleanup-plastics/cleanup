@@ -74,6 +74,7 @@ class CreateEvent extends Component {
         time: this.state.time,
         date: this.state.date,
         country: this.state.country,
+        owner: this.props.user._id
       })
       .then(() => {
         this.setState({
