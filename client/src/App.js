@@ -23,25 +23,34 @@ class App extends Component {
   render() {
     return (
       <div>
-      <Navbar user={this.state.user} setUser={this.setUser} />
+        <Navbar user={this.state.user} setUser={this.setUser} />
 
-        <Route exact path="/events"  
-         // component={Events} 
-           render={props => {
+        <Route
+          exact
+          path="/events"
+          // component={Events}
+          render={(props) => {
             if (this.state.user) {
-              return <Events {...props} />
-            } else return <Redirect to='/login' />
+              return <Events {...props} />;
+            } else return <Redirect to="/login" />;
           }}
         />
-        <Route exact path="/events/create" component={CreateEvent} />
         <Route
-          exact path='/signup'
+          exact
+          path="/events/create"
+          render={(props) => <CreateEvent user={this.state.user} />}
+        />
+
+        <Route
+          exact
+          path="/signup"
           // 'render prop' to pass props in routing
-          render={props => <Signup setUser={this.setUser} {...props} />}
+          render={(props) => <Signup setUser={this.setUser} {...props} />}
         />
         <Route
-          exact path='/login' 
-          render={props => <Login setUser={this.setUser} {...props} />}
+          exact
+          path="/login"
+          render={(props) => <Login setUser={this.setUser} {...props} />}
         />
       </div>
     );
