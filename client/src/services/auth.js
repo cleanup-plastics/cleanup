@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const signup = (username, email, password) => {
-  return axios.
-    post('/api/auth/signup', { username, email, password })
+  return axios
+    .post('/api/auth/signup', { username, email, password })
     .then(response => {
       return response.data
     })
@@ -12,8 +12,8 @@ const signup = (username, email, password) => {
 }
 
 const login = (username, password) => {
-  return axios.
-    post('/api/auth/login', { username, password })
+  return axios
+    .post('/api/auth/login', { username, password })
     .then(response => {
       console.log('response data from login',response.data)
       return response.data
@@ -24,8 +24,8 @@ const login = (username, password) => {
 }
 
 const logout = () => {
-  return axios.
-    delete('/api/auth/logout')
+  return axios
+    .delete('/api/auth/logout')
     .then(response => {
       return response.data;
     })

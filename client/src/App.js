@@ -2,23 +2,22 @@ import "./App.css";
 import { Route, Redirect } from "react-router-dom";
 import CreateEvent from "./components/CreateEvent";
 import Events from "./components/Events";
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Navbar from './components/Navbar';
+import Signup from "./components/Signup";
+import Login from "./components/Login";
+import Navbar from "./components/Navbar";
 
 import React, { Component } from "react";
 
 class App extends Component {
-
   state = {
-    user: this.props.user
-  }
+    user: this.props.user,
+  };
 
-  setUser = user => {
+  setUser = (user) => {
     this.setState({
-      user: user
-    })
-  }
+      user: user,
+    });
+  };
 
   render() {
     return (
@@ -28,17 +27,16 @@ class App extends Component {
         <Route
           exact
           path="/events"
-          // component={Events}
           render={(props) => {
             if (this.state.user) {
-              return <Events {...props} />;
+              return <Events user={this.state.user} {...props} />;
             } else return <Redirect to="/login" />;
           }}
         />
         <Route
           exact
           path="/events/create"
-          render={(props) => <CreateEvent user={this.state.user} />}
+          render={(props) => <CreateEvent user={this.state.user} {...props} />}
         />
 
         <Route
