@@ -1,6 +1,7 @@
 const Event = require("../models/Event");
 const router = require("express").Router();
 const { uploader, cloudinary } = require('../config/cloudinary');
+const axios = require('axios');
 
 // to get all the events
 
@@ -97,7 +98,7 @@ router.post('/upload', uploader.single('imageUrl'), (req, res, next) => {
 
 // to create an event
 
-router.post("/events", uploader.single("imageUrl"), (req, res, next) => {
+router.post("/events", /*uploader.single("imageUrl"),*/ (req, res, next) => {
   // console.log("IS THIS THE FILE?", req.file)
   const {
     title,
@@ -110,18 +111,25 @@ router.post("/events", uploader.single("imageUrl"), (req, res, next) => {
     country,
     imageUrl
   } = req.body;
+  const geocoderUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + location+'%20'+city +'%20'+country+'.json?access_token='+'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
+  console.log(geocoderUrl)
+  axios.get(geocoderUrl)
+  .then(response => {
+    const coordinates = response.data.features[0].geometry.coordinates
+    Event.create({ 
+      title, 
+      date, 
+      description, 
+      location, 
+      street, 
+      city,
+      time,
+      country,
+      coordinates,
+      imageUrl
+      })
+  })
   // console.log("hello from backend:", req.body.title);
-  Event.create({ 
-    title, 
-    date, 
-    description, 
-    location, 
-    street, 
-    city,
-    time,
-    country,
-    imageUrl
-    })
     .then((event) => {
       res.status(201).json(event);
     })
