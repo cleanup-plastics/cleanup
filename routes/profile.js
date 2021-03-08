@@ -29,13 +29,11 @@ router.put("/profile/user/:id", uploader.single("image"), (req, res, next) => {
   // console.log(req.file);
   // console.log(req.params.id);
   const {
-    // username,
     firstName,
     lastName,
     imagePath
   } = req.body;
   User.findByIdAndUpdate(req.params.id, {
-    // username,
     firstName,
     lastName,
     imagePath,
