@@ -74,6 +74,7 @@ class CreateEvent extends Component {
         time: this.state.time,
         date: this.state.date,
         country: this.state.country,
+        owner: this.props.user._id
       })
       .then(() => {
         this.setState({
@@ -94,6 +95,8 @@ class CreateEvent extends Component {
   };
 
   render() {
+    console.log('logging the props: ', this.props.user._id);
+    
     const countryOptions = countries.map((country) => {
       return (
         <option value={country} key={country}>

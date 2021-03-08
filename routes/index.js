@@ -1,6 +1,7 @@
 const Event = require("../models/Event");
 const router = require("express").Router();
 const { uploader, cloudinary } = require('../config/cloudinary');
+const User = require("../models/User.model");
 
 // to get all the events
 
@@ -111,17 +112,18 @@ router.post("/events", uploader.single("imageUrl"), (req, res, next) => {
     imageUrl
   } = req.body;
   // console.log("hello from backend:", req.body.title);
-  Event.create({ 
-    title, 
-    date, 
-    description, 
-    location, 
-    street, 
+  Event.create({
+    title,
+    date,
+    description,
+    location,
+    street,
     city,
     time,
     country,
-    imageUrl
-    })
+    imageUrl,
+    owner: req.user._id,
+  })
     .then((event) => {
       res.status(201).json(event);
     })
