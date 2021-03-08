@@ -16,8 +16,7 @@ class EventItem extends Component {
   };
 
   render() {
-
-    console.log(this.props)
+    console.log(this.props);
 
     return (
       <div key={this.props.event._id}>
@@ -37,6 +36,7 @@ class EventItem extends Component {
             event={this.props.event}
             userID={this.props.user}
             props={this.props}
+            getData={this.props.getData}
           />
         )}
       </div>

@@ -13,6 +13,8 @@ class Events extends Component {
     this.getData();
   }
 
+
+
   getData = () => {
     axios
       .get("/api/events")
@@ -35,7 +37,7 @@ class Events extends Component {
     const eventList = this.state.events.map((event) => {
       console.log('logging the event:', event)
       return (
-        <EventItem event={event} user={userID} props={ this.props}/>
+        <EventItem event={event} user={userID} props={this.props} getData={ this.getData}/>
       );
     });
 
