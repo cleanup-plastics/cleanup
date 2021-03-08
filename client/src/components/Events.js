@@ -35,7 +35,7 @@ class Events extends Component {
     const eventList = this.state.events.map((event) => {
       console.log('logging the event:', event)
       return (
-        <EventItem event={event} user={ userID}/>
+        <EventItem event={event} user={userID} props={ this.props}/>
       );
     });
 

@@ -17,7 +17,7 @@ class EventItem extends Component {
 
   render() {
 
-    //console.log(this.props.user)
+    console.log(this.props)
 
     return (
       <div key={this.props.event._id}>
@@ -33,7 +33,11 @@ class EventItem extends Component {
           )}
         </form>
         {this.state.toggled && (
-          <EventDetails event={this.props.event} userID={this.props.user} />
+          <EventDetails
+            event={this.props.event}
+            userID={this.props.user}
+            props={this.props}
+          />
         )}
       </div>
     );

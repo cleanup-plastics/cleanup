@@ -1,9 +1,33 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class EventDetails extends Component {
+  state = {
+    redirect: null,
+  };
+
+  deleteEvent = () => {
+    const eventID = this.props.event._id;
+    axios
+      .delete(`/api/events/${eventID}`)
+      .then(() => {
+        this.props.props.props.history.push("/events");
+      })
+      .then(() => {
+        this.setState({ redirect: "/events" });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
-    console.log("logging userID:", this.props.userID);
-    console.log("logging event:", this.props.event.owner);
+    console.log("logging props:", this.props.props.props.history);
+
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
 
     return (
       <div>
@@ -20,7 +44,7 @@ class EventDetails extends Component {
         {this.props.userID === this.props.event.owner && (
           <div>
             <button>Edit</button>
-            <button>Delete</button>
+            <button onClick={this.deleteEvent}>Delete</button>
           </div>
         )}
       </div>
