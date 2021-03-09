@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
-//
+import { Link } from "react-router-dom";
+
 
 const token= 'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
 
@@ -16,6 +17,7 @@ export default class Map extends Component {
     },
     mounted: false,
     selectedEvent: null,
+    toggled: false
   }
 
   onViewportChange= viewport => {
@@ -27,6 +29,13 @@ export default class Map extends Component {
   setSelectedEvent = event => {
     //event.preventDefault();
     this.setState({ selectedEvent: event })
+  }
+
+  toggleEventDetails = event => {
+    //event.preventDefault();
+    this.setState((state) => ({
+      toggled: !state.toggled
+    }));
   }
 
   deselectEvent = event => {
@@ -78,8 +87,13 @@ export default class Map extends Component {
               <div>
                 <h4>{this.state.selectedEvent.title}</h4>
                   <p>Date:{this.state.selectedEvent.date}</p>
-                  <button></button>
-                  <button></button>
+                  {/* <Link to={`/events/${this.props.event._id}/edit`}>Show Details</Link> */}
+                  
+                 <button onClick={() => this.toggleEventDetails(this.state.selectedEvent)}>{this.state.toggled ? "Hide details" : "Show Details"}</button>
+                    <p>{this.state.toggled  && <p>{this.state.selectedEvent.description} <br/>
+                    <b>Location:</b> {this.state.selectedEvent.location} <br/>
+                    <><button><Link to={'/events/saved'}>Save Event</Link></button></></p>}</p>
+                
                   <button onClick={this.deselectEvent}>Close</button>
               </div>
             </Popup>

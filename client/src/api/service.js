@@ -27,8 +27,9 @@ const createEvent = (event) => {
     .catch(errorHandler);
 }
 
-export default {
-  service,
-  handleUpload,
-  createEvent
-};
+
+const apiService = {
+  service, handleUpload, createEvent
+}
+
+export default apiService;
