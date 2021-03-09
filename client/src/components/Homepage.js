@@ -7,6 +7,7 @@ import image2 from "../images/image2.jpg";
 import image3 from "../images/image3.jpg";
 import image4 from "../images/image4.jpg";
 import image5 from "../images/image5.jpg";
+import image6 from "../images/image6.jpg";
 
 class Homepage extends Component {
   render() {
@@ -21,8 +22,8 @@ class Homepage extends Component {
         <header>
           <div className="header-img"></div>
         </header>
-        <h1>Welcome to cleanup - aiming for a plastic-free world</h1>
-        <div>
+        <div className="section">
+          <h1>Welcome to cleanup - aiming for a plastic-free world</h1>
           <p>
             A recent study released by the 5 Gyres Institute estimates that
             there are currently 5.25 trillion plastic particles in the ocean.
@@ -42,14 +43,37 @@ class Homepage extends Component {
           </a>
         </div>
 
-        <h2>Some impressions from our cleanup events:</h2>
-        <Carousel breakPoints={breakPoints}>
-          <img src={image1} alt="no pic" className="slider-img" />
-          <img src={image2} alt="no pic" className="slider-img" />
-          <img src={image3} alt="no pic" className="slider-img" />
-          <img src={image4} alt="no pic" className="slider-img" />
-          <img src={image5} alt="no pic" className="slider-img" />
-        </Carousel>
+        <div className="section">
+          <h2>What can you do?</h2>
+          <div className="flex-container">
+            <div className="flex-column">
+              <h3>Cleanup events</h3>
+              <p>
+                Join or organise a cleanup event in your neighbourhood or during
+                your holidays!
+              </p>
+            </div>
+            <div className="flex-column">
+              <h3>Avoid using plastic</h3>
+              <p>
+                Reduce the amount of plastic that you use and start
+                transitioning to a zero-waste lifestyle!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="section">
+          <h2>Some impressions from our cleanup events:</h2>
+          <Carousel breakPoints={breakPoints}>
+            <img src={image1} alt="no pic" className="slider-img" />
+            <img src={image2} alt="no pic" className="slider-img" />
+            <img src={image3} alt="no pic" className="slider-img" />
+            <img src={image4} alt="no pic" className="slider-img" />
+            <img src={image5} alt="no pic" className="slider-img" />
+            <img src={image6} alt="no pic" className="slider-img" />
+          </Carousel>
+        </div>
       </div>
     );
   }

@@ -3,10 +3,29 @@ color palette:
 #75cfb8
 #bbdfc8
 #f0e5d8
-#ffc478 */
+#ffc478
+#0B4F6C */
 
 .App {
   text-align: center;
 }
+
+body {
+  width: 100vw;
+   background-color: #f0e5d8;
+}
+
+h1 {
+  color:#75cfb8
+}
+
+h2 {
+  color:#75cfb8
+}
+
+h3 {
+  color:#ffc478
+}
+
 
 
