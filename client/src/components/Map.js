@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 //
 
 const token= 'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
@@ -12,10 +12,10 @@ export default class Map extends Component {
       height: 400,
       latitude: 52.52,
       longitude: 13.405,
-      zoom: 8
+      zoom: 6
     },
     mounted: false,
-    //events: this.props.events
+    selectedEvent: null,
   }
 
   onViewportChange= viewport => {
@@ -24,12 +24,19 @@ export default class Map extends Component {
     })
   }
 
+  setSelectedEvent = event => {
+    //event.preventDefault();
+    this.setState({ selectedEvent: event })
+  }
+
+  deselectEvent = event => {
+    this.setState({ selectedEvent: null })
+  }
+
   componentDidMount () {
     this.setState({ mounted: true })
   }
 
-
- 
 
   render() {
     if(!this.props.events) {
@@ -54,13 +61,29 @@ export default class Map extends Component {
             latitude={pin.coordinates[1]}
             longitude={pin.coordinates[0]}
             >
-            <button className="marker-btn">
+            <button 
+            className="marker-btn"
+            onClick={() => this.setSelectedEvent(pin)}>
               <img src="/pointer.svg" alt="event pointer"/>
             </button>
 
             </Marker>
             )
           })}
+          {this.state.selectedEvent ? (
+            <Popup 
+            latitude={this.state.selectedEvent.coordinates[1]}
+            longitude={this.state.selectedEvent.coordinates[0]}
+            >
+              <div>
+                <h4>{this.state.selectedEvent.title}</h4>
+                  <p>Date:{this.state.selectedEvent.date}</p>
+                  <button></button>
+                  <button></button>
+                  <button onClick={this.deselectEvent}>Close</button>
+              </div>
+            </Popup>
+          ) : null}
         </ReactMapGL>
         
       </div>
