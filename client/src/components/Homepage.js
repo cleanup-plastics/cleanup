@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Homepage.css";
 import Carousel from "react-elastic-carousel";
-// import Slide from "./Slide";
 import image1 from "../images/image1.jpg";
 import image2 from "../images/image2.jpg";
 import image3 from "../images/image3.jpg";
@@ -17,6 +16,26 @@ class Homepage extends Component {
       { width: 768, itemsToShow: 3 },
       { width: 1200, itemsToShow: 4 },
     ];
+
+
+    const accordionData = [
+      {
+        label: "TOP FIVE SOURCES OF SINGLE-USE PLASTIC",
+        content:
+          "plastic bags, water bottles, to-go containers, takeaway cups, straws",
+      },
+      {
+        label: "IS COMPOSTABLE PLASTIC BETTER?",
+        content:
+          "Not exactly. Yes, it's made from non-petroleum sources. But you need a large composting facility to break down soy, bagasse (made from sugar) and PLA (made from corn) plastic. Because PLA is hard to break down, some recycling facilities consider it a contaminant. Only PHA (made from bacteria) is marine degradable — and only to a point: Within six months, it degrades by 30% in warm, tropical waters. New materials are being developed from natural sources that could eventually provide viable, biodegradable alternatives to petroleum-based plastic. These include methane, mushrooms, and even milk!",
+      },
+      {
+        label: "Where does all the plastic go? ",
+        content:
+          "Most plastic are made from petroleum and built to last — some for thousands of years. In the ocean, sunlight and waves break down most plastics into small microparticles, which never truly biodegrade. The result? 5 Gyres led research found there is an estimated 5.25 trillion particles of “plastic smog” weighing 270,000 tons in our oceans worldwide. Once in the water, microplastics attract persistent organic pollutants like flame retardants and other industrial chemicals linked to human health problems — even cancer. They can be one million times more toxic than the water around them. These pollutants can work their way up the food chain — and onto our plates.",
+      },
+    ];
+
     return (
       <div>
         <header>
@@ -74,8 +93,25 @@ class Homepage extends Component {
             <img src={image6} alt="no pic" className="slider-img" />
           </Carousel>
         </div>
+
+        <div>
+          {accordionData.map(accordionItem => {
+            return (
+              <div className="accordion-container">
+
+              <button>{accordionItem.label}</button>
+              <p>{accordionItem.content}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
+
+
+    
+
+
   }
 }
 
