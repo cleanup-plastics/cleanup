@@ -9,7 +9,7 @@ class EditEvent extends Component {
     super(props);
 
     this.state = {
-      event: {},
+      event: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -85,105 +85,105 @@ class EditEvent extends Component {
       );
     });
 
-    // if (this.state.event === {}) return <></>;
-    // else
-    return (
-      <div>
-        <h1>Edit this event:</h1>
+    if (!this.state.event) return <></>;
+    else
+      return (
+        <div>
+          <h1>Edit this event:</h1>
 
-        <form onSubmit={(event) => this.handleSubmit(event)}>
-          <label htmlFor="title">Title: </label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={this.state.event.title}
-            onChange={this.handleChange}
-            required
-          />
+          <form onSubmit={(event) => this.handleSubmit(event)}>
+            <label htmlFor="title">Title: </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={this.state.event.title}
+              onChange={this.handleChange}
+              required
+            />
 
-          <label htmlFor="description">Description: </label>
-          <textarea
-            name="description"
-            id="description"
-            cols="30"
-            rows="8"
-            value={this.state.event.description}
-            onChange={this.handleChange}
-          ></textarea>
+            <label htmlFor="description">Description: </label>
+            <textarea
+              name="description"
+              id="description"
+              cols="30"
+              rows="8"
+              value={this.state.event.description}
+              onChange={this.handleChange}
+            ></textarea>
 
-          <label htmlFor="date">Date: </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={this.state.event.date}
-            onChange={this.handleChange}
-            required
-          ></input>
+            <label htmlFor="date">Date: </label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              value={this.state.event.date}
+              onChange={this.handleChange}
+              required
+            ></input>
 
-          <label htmlFor="time">Time: </label>
-          <input
-            type="time"
-            id="time"
-            name="time"
-            value={this.state.event.time}
-            onChange={this.handleChange}
-            required
-          ></input>
+            <label htmlFor="time">Time: </label>
+            <input
+              type="time"
+              id="time"
+              name="time"
+              value={this.state.event.time}
+              onChange={this.handleChange}
+              required
+            ></input>
 
-          <label htmlFor="image">Image: </label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            // value={this.state.image}
-            onChange={(e) => this.handleFileUpload(e)}
-          />
+            <label htmlFor="image">Image: </label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              // value={this.state.image}
+              onChange={(e) => this.handleFileUpload(e)}
+            />
 
-          <label htmlFor="location">Name of location: </label>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            value={this.state.event.location}
-            onChange={this.handleChange}
-          />
+            <label htmlFor="location">Name of location: </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              value={this.state.event.location}
+              onChange={this.handleChange}
+            />
 
-          <label htmlFor="street">Street: </label>
-          <input
-            type="text"
-            id="street"
-            name="street"
-            value={this.state.event.street}
-            onChange={this.handleChange}
-          />
-          <label htmlFor="city">City: </label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={this.state.event.city}
-            onChange={this.handleChange}
-          />
+            <label htmlFor="street">Street: </label>
+            <input
+              type="text"
+              id="street"
+              name="street"
+              value={this.state.event.street}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="city">City: </label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              value={this.state.event.city}
+              onChange={this.handleChange}
+            />
 
-          <label htmlFor="country">Country: </label>
-          <select
-            name="country"
-            id="country"
-            value={this.state.event.country}
-            onChange={this.handleChange}
-          >
-            <option value="">All</option>
-            {countryOptions}
-          </select>
+            <label htmlFor="country">Country: </label>
+            <select
+              name="country"
+              id="country"
+              value={this.state.event.country}
+              onChange={this.handleChange}
+            >
+              <option value="">All</option>
+              {countryOptions}
+            </select>
 
-          <button type="submit">Edit</button>
-        </form>
+            <button type="submit">Edit</button>
+          </form>
 
-        <Link to={"/events"}>Back to events</Link>
-      </div>
-    );
+          <Link to={"/events"}>Back to events</Link>
+        </div>
+      );
   }
 }
 
