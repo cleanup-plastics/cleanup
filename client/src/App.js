@@ -5,6 +5,7 @@ import Events from "./components/Events";
 import EditEvent from "./components/EditEvent";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
 
 import React, { Component } from "react";
@@ -25,6 +26,10 @@ class App extends Component {
       <div>
         <Navbar user={this.state.user} setUser={this.setUser} />
 
+        <Route
+          exact
+          path="/" component={Homepage}
+        />
         <Route
           exact
           path="/events"
