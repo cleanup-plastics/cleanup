@@ -30,40 +30,42 @@ router.get("/events/:id", (req, res, next) => {
 
 // to update an event
 
-router.put("/events/:id", uploader.single("image"), (req, res, next) => {
+router.put("/events/:id", (req, res, next) => {
   // console.log(req.file);
   // console.log(req.params.id);
   const {
     title,
     date,
-    description,
-    location,
-    street,
-    city,
-    country
-  } = req.body;
-  const imagePath = req.file.path
-  const imageName = req.file.originalname
-  const publicId = req.file.filename
-  Event.findByIdAndUpdate(req.params.id, {
-    title,
-    date,
+    time,
     description,
     location,
     street,
     city,
     country,
-    imagePath,
-    imageName,
-    publicId
+    imageUrl,
+  } = req.body;
+  
+  Event.findByIdAndUpdate(
+    req.params.id, 
+    {
+      title,
+      date,
+      time,
+      description,
+      location,
+      street,
+      city,
+      country,
+      imageUrl
   }, 
-  { new:true })
+  { new:true }
+  )
   .then(event => {
     res.status(200).json(event)
   })
   .catch(err => {
     next(err)
-  })
+  });
 });
 
 // to delete an event
@@ -78,16 +80,16 @@ router.delete("/events/:id", (req, res, next) => {
   })
   .catch(err => {
     next(err)
-  })
-})
+  });
+});
 
 // to post to Cloudinary
 
-router.post('/upload', uploader.single('imageUrl'), (req, res, next) => {
+router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
   // console.log('file is: ', req.file)
  
   if (!req.file) {
-    next(new Error('No file uploaded!'));
+    next(new Error("No file uploaded!"));
     return;
   }
   // get secure_url from the file object and save it in the

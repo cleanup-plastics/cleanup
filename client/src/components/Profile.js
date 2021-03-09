@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import EditProfile from './EditProfile';
+// import EditProfile from './EditProfile';
 
 export default class Profile extends Component {
   state = {
@@ -23,4 +23,3 @@ export default class Profile extends Component {
     )
   }
 } 
-

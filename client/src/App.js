@@ -58,14 +58,15 @@ class App extends Component {
         <Route
           exact
           path="/profile/:id"
-          render={(props) => <Profile user={this.state.user} />}
+          render={(props) => <Profile user={this.state.user} {...props} />}
         />
 
         <Route
           exact
           path="/profile/user/:id"
-          render={(props) => <EditProfile user={this.state.user} />}
+          render={(props) => <EditProfile user={this.state.user} {...props} />}
         />
+
       </div>
     );
   }
