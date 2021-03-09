@@ -7,13 +7,13 @@
   height: 500px;
   background: url("../images/header-img.jpg");
   background-repeat: no-repeat;
-  background-size: 1200px 600px;
+  background-size: cover;
+  background-position: center;
 }
 
 .slider-img {
   width: 100%;
   height: 300px;
-  /* object-fit: cover */
   background: url("../images/header-img.jpg");
 }
 
@@ -27,15 +27,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.info-box {
   width: 20%;
   margin: 40px;
 }
 
 .accordion-container {
-  width: 50%;
+  width: 60%;
 }
 
 .accordion-container button {
   padding: 20px;
   width: 100%;
+  background-color: #75cfb8;
+  cursor: pointer;
+}
+
+.accordion-container button:hover {
+  background-color: #ffc478;
+  transition: 0.3s;
 }

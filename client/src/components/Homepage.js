@@ -7,33 +7,25 @@ import image3 from "../images/image3.jpg";
 import image4 from "../images/image4.jpg";
 import image5 from "../images/image5.jpg";
 import image6 from "../images/image6.jpg";
+import accordionData from "../accordionData.json";
 
 class Homepage extends Component {
+  state = {
+    accordionToggled: false,
+  };
+
+  toggleAccordion = () => {
+    this.setState((state) => ({
+      accordionToggled: !state.accordionToggled,
+    }));
+  };
+
   render() {
     const breakPoints = [
       { width: 1, itemsToShow: 1 },
       { width: 550, itemsToShow: 2, itemsToScroll: 2 },
       { width: 768, itemsToShow: 3 },
       { width: 1200, itemsToShow: 4 },
-    ];
-
-
-    const accordionData = [
-      {
-        label: "TOP FIVE SOURCES OF SINGLE-USE PLASTIC",
-        content:
-          "plastic bags, water bottles, to-go containers, takeaway cups, straws",
-      },
-      {
-        label: "IS COMPOSTABLE PLASTIC BETTER?",
-        content:
-          "Not exactly. Yes, it's made from non-petroleum sources. But you need a large composting facility to break down soy, bagasse (made from sugar) and PLA (made from corn) plastic. Because PLA is hard to break down, some recycling facilities consider it a contaminant. Only PHA (made from bacteria) is marine degradable — and only to a point: Within six months, it degrades by 30% in warm, tropical waters. New materials are being developed from natural sources that could eventually provide viable, biodegradable alternatives to petroleum-based plastic. These include methane, mushrooms, and even milk!",
-      },
-      {
-        label: "Where does all the plastic go? ",
-        content:
-          "Most plastic are made from petroleum and built to last — some for thousands of years. In the ocean, sunlight and waves break down most plastics into small microparticles, which never truly biodegrade. The result? 5 Gyres led research found there is an estimated 5.25 trillion particles of “plastic smog” weighing 270,000 tons in our oceans worldwide. Once in the water, microplastics attract persistent organic pollutants like flame retardants and other industrial chemicals linked to human health problems — even cancer. They can be one million times more toxic than the water around them. These pollutants can work their way up the food chain — and onto our plates.",
-      },
     ];
 
     return (
@@ -65,14 +57,14 @@ class Homepage extends Component {
         <div className="section">
           <h2>What can you do?</h2>
           <div className="flex-container">
-            <div className="flex-column">
+            <div className="flex-column info-box">
               <h3>Cleanup events</h3>
               <p>
                 Join or organise a cleanup event in your neighbourhood or during
                 your holidays!
               </p>
             </div>
-            <div className="flex-column">
+            <div className="flex-column info-box">
               <h3>Avoid using plastic</h3>
               <p>
                 Reduce the amount of plastic that you use and start
@@ -94,24 +86,20 @@ class Homepage extends Component {
           </Carousel>
         </div>
 
-        <div>
-          {accordionData.map(accordionItem => {
+        <div className="section flex-column">
+          {accordionData.map((accordionItem) => {
             return (
               <div className="accordion-container">
-
-              <button>{accordionItem.label}</button>
-              <p>{accordionItem.content}</p>
+                <button onClick={this.toggleAccordion}>
+                  {accordionItem.label}
+                </button>
+                {this.state.accordionToggled && <p>{accordionItem.content}</p>}
               </div>
             );
           })}
         </div>
       </div>
     );
-
-
-    
-
-
   }
 }
 
