@@ -53,15 +53,15 @@ class CreateEvent extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    service
-      .createEvent(this.state)
-      .then(res => {
-        console.log('added: ', res);
-        // here you would redirect to some other page
-      })
-      .catch(err => {
-        console.log('Error while adding the thing: ', err);
-      });
+    // service
+    //   .createEvent(this.state)
+    //   .then(res => {
+    //     console.log('added: ', res);
+    //     // here you would redirect to some other page
+    //   })
+    //   .catch(err => {
+    //     console.log('Error while adding the thing: ', err);
+    //   });
 
     axios
       .post("/api/events", {

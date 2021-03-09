@@ -3,6 +3,7 @@ import axios from "axios";
 import countries from "../countries.json";
 import { Link } from "react-router-dom";
 import service from "../api/service";
+import { Redirect } from "react-router-dom";
 
 class EditEvent extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class EditEvent extends Component {
 
     this.state = {
       event: null,
+      redirect: null,
+      imageUrl: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -25,7 +28,7 @@ class EditEvent extends Component {
     axios
       .get(`/api/events/${eventID}`)
       .then((response) => {
-        console.log("response from GET:", response.data);
+        //console.log("response from GET:", response.data);
         this.setState({
           event: response.data,
         });
@@ -50,9 +53,12 @@ class EditEvent extends Component {
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
 
+    console.log('hello from UPLOAD!')
     service
       .handleUpload(uploadData)
       .then((response) => {
+        console.log("hello from response!", response);
+        //const imageUrl = this.state.event.imageUrl;
         this.setState({ imageUrl: response.secure_url });
       })
       .catch((err) => {
@@ -63,17 +69,42 @@ class EditEvent extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    service
-      .createEvent(this.state)
-      .then((res) => {
-        console.log("added: ", res);
-        // here you would redirect to some other page
+        const eventID = this.props.match.params.id;
+
+    const {
+      title,
+      date,
+      time,
+      description,
+      location,
+      street,
+      city,
+      country,
+    
+    } = this.state.event;
+    const imageUrl = this.state.imageUrl;
+    console.log('imageurl:', imageUrl)
+
+    axios
+      .put(`http://localhost:5005/api/events/${eventID}`, {
+        title,
+        date,
+        time,
+        description,
+        location,
+        street,
+        city,
+        country,
+        imageUrl
+      })
+      .then(() => {
+        console.log("axios put is done");
+        console.log("the STATE AFTER PUT", this.state.event);
+        this.setState({ redirect: "/events" });
       })
       .catch((err) => {
-        console.log("Error while adding the thing: ", err);
+        console.log("Error while updating the event: ", err);
       });
-
-    //axios.put
   };
 
   render() {
@@ -84,6 +115,10 @@ class EditEvent extends Component {
         </option>
       );
     });
+
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
 
     if (!this.state.event) return <></>;
     else

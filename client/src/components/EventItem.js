@@ -19,7 +19,7 @@ class EventItem extends Component {
   //  console.log(this.props.event._id);
 
     return (
-      <div key={this.props.event._id}>
+      <div>
         <h2>{this.props.event.title}</h2>
         <p>Country: {this.props.event.country}</p>
         <p>City: {this.props.event.city}</p>
