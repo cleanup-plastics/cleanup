@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import serviceProfile from "../api/serviceProfile";
-// Could import redirect
+// import serviceProfile from "../api/serviceProfile";
+import service from "../api/service";
+import { Redirect } from "react-router-dom";
 
 export default class EditProfile extends Component {
   constructor(props) {
@@ -10,10 +11,8 @@ export default class EditProfile extends Component {
 
     this.state = {
       user:null,
-      // firstName: "",
-      // lastName: "",
-      // imagePath: "",
-      // redirect: null
+      imagePath: "",
+      redirect: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -26,8 +25,6 @@ export default class EditProfile extends Component {
 
   getData = () => {
     const userId = this.props.match.params.id;
-    // console.log(userId)
-    // console.log(this.props)
     axios
     .get(`api/profile/user/${userId}`)
     .then((response) => {
@@ -55,7 +52,8 @@ export default class EditProfile extends Component {
 
     console.log("THIS IS FILE UPLOAD")
 
-    serviceProfile
+    // serviceProfile
+    service
       .handleUpload(uploadData)
       .then(response => {
         console.log("THIS IS THE RESPONSE", response);
@@ -66,48 +64,30 @@ export default class EditProfile extends Component {
       });
   };
 
-  handleSubmit = async (user) => {
-    user.preventDefault();
+  handleSubmit = async (event) => {
+
+    event.preventDefault();
 
     const id = this.props.match.params.id;
-    console.log(this.props, "props at FE editprofile", id)
-    // const {
-    //   firstName,
-    //   lastName
-    // } = this.state.user;
+    console.log(this.props, "PROPS AT EDIT PROFILE", id)
+
     const firstName = this.state.firstName;
     console.log("NAME: ", firstName)
+
     const lastName = this.state.lastName;
     console.log("LASTNAME: ", lastName)
+
     const imagePath = this.state.imagePath;
     console.log("PICTURE: ", imagePath)
 
-    // serviceProfile
-    //   .updateProfile(this.state)
-    //   .then(res => {
-    //     console.log("added: ", res);
-    //     // here you would redirect to some other page
-    //   })
-    //   .catch(err => {
-    //     console.log("Error while adding the thing: ", err);
-    //   });
-    // let request = await axios.put(`/api/profile/user/${this.props.user_id}`, {
-      
-    //   firstName,
-    //   lastName,
-    //   imagePath
-    // })
       axios
       .put(`http://localhost:5005/api/profile/user/${id}`, {
-        // firstName: this.state.firstName,
-        // lastName: this.state.lastName,
-        // imagePath: this.state.imagePath
         firstName,
         lastName,
         imagePath
       })
       .then((response) => {
-        console.log("PUT METHOD IS DONE", this.state.user)
+        console.log("PUT METHOD IS DONE", response) // do I really need to parse response?
         this.setState({ redirect: `/profile/${this.props.user._id}` });
       })
       .catch(err => {
@@ -137,7 +117,7 @@ export default class EditProfile extends Component {
             onChange={this.handleChange}
           />
 
-          <label htmlFor="imagePath">Profile Picture: </label>
+          <label htmlFor="image">Profile Picture: </label>
           <input
             type="file"
             id="imagePath"
