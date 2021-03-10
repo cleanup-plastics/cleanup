@@ -8,8 +8,6 @@ import Navbar from './components/Navbar';
 import EventToSave from './components/EventToSave';
 import SavedEvents from './components/SavedEvents';
 import EditEvent from "./components/EditEvent";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 
 import React, { Component } from "react";
@@ -39,7 +37,7 @@ class App extends Component {
           path="/events"
           render={(props) => {
             if (this.state.user) {
-              return <Events {...props}/>
+              return <Events user={this.state.user} {...props}/>
             } else return <Redirect to='/login' />
           }}
         />
