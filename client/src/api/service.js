@@ -19,16 +19,28 @@ const handleUpload = (theFile) => {
     .catch(errorHandler);
 }
 
+
 const createEvent = (event) => {
-  // console.log('new thing is: ', newThing)
+  // console.log('new thing is: ', event)
   return service
     .post('/events', event)
     .then(res => res.data)
     .catch(errorHandler);
 }
 
+const updateEvent = (event, id) => {
+   console.log('updating event cloudinary: ', event)
+  return service
+    //how to retrieve the eventID for route?
+    .put(`/events/${id}`, event)
+    .then((res) => res.data)
+    .catch(errorHandler);
+};
+
 export default {
   service,
   handleUpload,
-  createEvent
+  createEvent,
+  updateEvent,
+ 
 };
