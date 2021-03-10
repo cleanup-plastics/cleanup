@@ -16,6 +16,10 @@ const userSchema = new Schema({
   // imagePath: String,
   // imageName: String,
   location: String, 
+  savedEvents: [{
+    type: Schema.Types.ObjectId,
+    ref: "Event"
+  }],
   role: {
     type: String,
      enum: ['user', 'admin'],

@@ -7,20 +7,24 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import EditProfile from "./components/EditProfile";
+import EventToSave from './components/EventToSave';
+import SavedEvents from './components/SavedEvents';
+import EditEvent from "./components/EditEvent";
+import Homepage from "./components/Homepage";
+
 
 import React, { Component } from "react";
 
 class App extends Component {
-
   state = {
-    user: this.props.user
-  }
+    user: this.props.user,
+  };
 
-  setUser = user => {
+  setUser = (user) => {
     this.setState({
-      user: user
-    })
-  }
+      user: user,
+    });
+  };
 
   render() {
     return (
@@ -29,18 +33,33 @@ class App extends Component {
 
         <Route
           exact
-          path="/events"
-          // component={Events}
-          render={(props) => {
-            if (this.state.user) {
-              return <Events {...props} />;
-            } else return <Redirect to="/login" />;
-          }}
+          path="/" component={Homepage}
         />
         <Route
           exact
-          path="/events/create"
-          render={(props) => <CreateEvent user={this.state.user} />}
+          path="/events"
+          render={(props) => {
+            if (this.state.user) {
+              return <Events user={this.state.user} {...props}/>
+            } else return <Redirect to='/login' />
+          }}
+        />
+
+        <Route exact path="/events/create" 
+        render={(props) => <CreateEvent user={this.state.user} {...props}/> }
+        />
+        <Route exact path="/events/:id" 
+       render={(props) => <EventToSave user={this.state.user} {...props} />}
+       />
+            
+        <Route exact path="/:id/savedEvents" 
+        render={(props) => <SavedEvents user={this.state.user} {...props}/> }
+        />
+
+        <Route
+          exact
+          path="/events/:id/edit"
+          render={(props) => <EditEvent {...props} />}
         />
 
         <Route

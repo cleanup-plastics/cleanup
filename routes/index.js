@@ -1,4 +1,5 @@
 const Event = require("../models/Event");
+const axios = require('axios');
 const User = require("../models/User.model");
 const router = require("express").Router();
 const { uploader, cloudinary } = require("../config/cloudinary");
@@ -33,6 +34,7 @@ router.get("/events/:id", (req, res, next) => {
 router.put("/events/:id", (req, res, next) => {
   // console.log(req.file);
   // console.log(req.params.id);
+  console.log("route TRIGGERED", req.params, req.body);
   const {
     title,
     date,
@@ -44,9 +46,9 @@ router.put("/events/:id", (req, res, next) => {
     country,
     imageUrl,
   } = req.body;
-  
   Event.findByIdAndUpdate(
-    req.params.id, 
+    req.params.id,
+
     {
       title,
       date,
@@ -56,16 +58,16 @@ router.put("/events/:id", (req, res, next) => {
       street,
       city,
       country,
-      imageUrl
-  }, 
-  { new:true }
+      imageUrl,
+    },
+    { new: true }
   )
-  .then(event => {
-    res.status(200).json(event)
-  })
-  .catch(err => {
-    next(err)
-  });
+    .then((event) => {
+      res.status(200).json(event);
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 // to delete an event
@@ -73,7 +75,7 @@ router.put("/events/:id", (req, res, next) => {
 router.delete("/events/:id", (req, res, next) => {
   Event.findByIdAndDelete(req.params.id)
   .then(event => {
-    if (event.imagePath) {
+    if (event.imageUrl) {
       cloudinary.uploader.destroy(event.publicId);
     }
     res.status(200).json({message: "event deleted"})
@@ -87,20 +89,20 @@ router.delete("/events/:id", (req, res, next) => {
 
 router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
   // console.log('file is: ', req.file)
- 
+
   if (!req.file) {
     next(new Error("No file uploaded!"));
     return;
   }
   // get secure_url from the file object and save it in the
   // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
- 
+
   res.json({ secure_url: req.file.path });
 });
 
 // to create an event
 
-router.post("/events", uploader.single("imageUrl"), (req, res, next) => {
+router.post("/events", /*uploader.single("imageUrl"),*/ (req, res, next) => {
   // console.log("IS THIS THE FILE?", req.file)
   const {
     title,
@@ -111,21 +113,28 @@ router.post("/events", uploader.single("imageUrl"), (req, res, next) => {
     time,
     city,
     country,
-    imageUrl
-  } = req.body;
-  // console.log("hello from backend:", req.body.title);
-  Event.create({
-    title,
-    date,
-    description,
-    location,
-    street,
-    city,
-    time,
-    country,
     imageUrl,
-    owner: req.user._id,
+  } = req.body;
+  const geocoderUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + street+'%20'+city +'%20'+country+'.json?access_token='+'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
+  console.log(geocoderUrl)
+  axios.get(geocoderUrl)
+  .then(response => {
+    const coordinates = response.data.features[0].geometry.coordinates
+    Event.create({ 
+      title, 
+      date, 
+      description, 
+      location, 
+      street, 
+      city,
+      time,
+      country,
+      coordinates,
+      imageUrl,
+      owner: req.user._id
+      })
   })
+  // console.log("hello from backend:", req.body.title);
     .then((event) => {
       res.status(201).json(event);
     })
