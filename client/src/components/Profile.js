@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-// import EditProfile from './EditProfile';
 
 export default class Profile extends Component {
   state = {
@@ -41,7 +40,7 @@ export default class Profile extends Component {
     else
     return (
       <div>
-      <img src={this.state.user.imageUrl} alt="your profile pic" />
+        <img src={this.state.user.imageUrl} alt="your profile pic" />
         <h4>{this.state.user.username}</h4>
         <p>{this.state.user.firstName}</p>
         <p>{this.state.user.lastName}</p>

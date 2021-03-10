@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-// import serviceProfile from "../api/serviceProfile";
 import service from "../api/service";
 import { Redirect } from "react-router-dom";
 
@@ -52,7 +51,6 @@ export default class EditProfile extends Component {
 
     console.log("THIS IS FILE UPLOAD")
 
-    // serviceProfile
     service
       .handleUpload(uploadData)
       .then(response => {

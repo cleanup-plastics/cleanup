@@ -1,7 +1,7 @@
 const Event = require("../models/Event");
 const User = require("../models/User.model");
 const router = require("express").Router();
-const { uploader, cloudinary } = require('../config/cloudinary');
+const { uploader, cloudinary } = require("../config/cloudinary");
 
 // to get all the events
 
