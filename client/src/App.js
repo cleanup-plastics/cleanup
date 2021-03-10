@@ -7,58 +7,70 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import EventToSave from './components/EventToSave';
 import SavedEvents from './components/SavedEvents';
+import EditEvent from "./components/EditEvent";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
+import Homepage from "./components/Homepage";
 
 import React, { Component } from "react";
 
 class App extends Component {
-
   state = {
-    user: this.props.user
-  }
+    user: this.props.user,
+  };
 
-  setUser = user => {
+  setUser = (user) => {
     this.setState({
-      user: user
-    })
-  }
+      user: user,
+    });
+  };
 
   render() {
     return (
       <div>
-      <Navbar user={this.state.user} setUser={this.setUser} />
+        <Navbar user={this.state.user} setUser={this.setUser} />
 
-        <Route exact path="/events"  
-         // component={Events} 
-           render={props => {
+        <Route
+          exact
+          path="/" component={Homepage}
+        />
+        <Route
+          exact
+          path="/events"
+          render={(props) => {
             if (this.state.user) {
               return <Events {...props}/>
             } else return <Redirect to='/login' />
           }}
         />
-      
-
 
         <Route exact path="/events/create" 
         render={(props) => <CreateEvent user={this.state.user} {...props}/> }
         />
-
-
-       <Route exact path="/events/:id" 
+        <Route exact path="/events/:id" 
        render={(props) => <EventToSave user={this.state.user} {...props} />}
        />
-
+            
         <Route exact path="/:id/savedEvents" 
         render={(props) => <SavedEvents user={this.state.user} {...props}/> }
         />
 
         <Route
-          exact path='/signup'
+          exact
+          path="/events/:id/edit"
+          render={(props) => <EditEvent {...props} />}
+        />
+
+        <Route
+          exact
+          path="/signup"
           // 'render prop' to pass props in routing
-          render={props => <Signup setUser={this.setUser} {...props} />}
+          render={(props) => <Signup setUser={this.setUser} {...props} />}
         />
         <Route
-          exact path='/login' 
-          render={props => <Login setUser={this.setUser} {...props} />}
+          exact
+          path="/login"
+          render={(props) => <Login setUser={this.setUser} {...props} />}
         />
       </div>
     );

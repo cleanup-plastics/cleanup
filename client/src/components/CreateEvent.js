@@ -31,7 +31,7 @@ class CreateEvent extends Component {
   };
 
   handleFileUpload = e => {
-    console.log('The file to be uploaded is: ', e.target.files[0]);
+    //console.log('The file to be uploaded is: ', e.target.files[0]);
  
     const uploadData = new FormData();
     // imageUrl => this name has to be the same as in the model since we pass
@@ -53,15 +53,15 @@ class CreateEvent extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    service
-      .createEvent(this.state)
-      .then(res => {
-        console.log('added: ', res);
-        // here you would redirect to some other page
-      })
-      .catch(err => {
-        console.log('Error while adding the thing: ', err);
-      });
+    // service
+    //   .createEvent(this.state)
+    //   .then(res => {
+    //     console.log('added: ', res);
+    //     // here you would redirect to some other page
+    //   })
+    //   .catch(err => {
+    //     console.log('Error while adding the thing: ', err);
+    //   });
 
     axios
       .post("/api/events", {
@@ -95,6 +95,8 @@ class CreateEvent extends Component {
   };
 
   render() {
+    console.log('logging the props: ', this.props.user._id);
+    
     const countryOptions = countries.map((country) => {
       return (
         <option value={country} key={country}>
