@@ -2,13 +2,16 @@ import "./App.css";
 import { Route, Redirect } from "react-router-dom";
 import CreateEvent from "./components/CreateEvent";
 import Events from "./components/Events";
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Navbar from './components/Navbar';
+import Signup from "./components/Signup";
+import Login from "./components/Login";
+import Navbar from "./components/Navbar";
+import Profile from "./components/Profile";
+import EditProfile from "./components/EditProfile";
 import EventToSave from './components/EventToSave';
 import SavedEvents from './components/SavedEvents';
 import EditEvent from "./components/EditEvent";
 import Homepage from "./components/Homepage";
+
 
 import React, { Component } from "react";
 
@@ -70,6 +73,19 @@ class App extends Component {
           path="/login"
           render={(props) => <Login setUser={this.setUser} {...props} />}
         />
+
+        <Route
+          exact
+          path="/profile/:id"
+          render={(props) => <Profile user={this.state.user} {...props} />}
+        />
+
+        <Route
+          exact
+          path="/profile/user/:id"
+          render={(props) => <EditProfile user={this.state.user} {...props} />}
+        />
+
       </div>
     );
   }

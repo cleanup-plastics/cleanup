@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { logout } from '../services/auth';
 
 
@@ -25,6 +25,9 @@ export default function Navbar(props) {
           {/* <li>
             <Link to='/:id/savedEvents'>Saved Events</Link>
           </li> */}
+          <li>
+            <Link to={`/profile/${props.user._id}`}>Profile</Link>
+          </li>
           <li>
             <Link to='/' onClick={() => handleLogout(props)} >Logout</Link>
           </li>

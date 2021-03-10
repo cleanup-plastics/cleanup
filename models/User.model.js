@@ -6,12 +6,15 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
+  imageUrl: { 
+    type: String 
+  },
   password: String,
   email: String,
   firstName: String,
   lastName: String,
-  imagePath: String,
-  imageName: String,
+  // imagePath: String,
+  // imageName: String,
   location: String, 
   savedEvents: [{
     type: Schema.Types.ObjectId,
