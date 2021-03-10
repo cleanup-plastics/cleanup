@@ -12,11 +12,14 @@ import accordionData from "../accordionData.json";
 class Homepage extends Component {
   state = {
     accordionToggled: false,
+    clickedAccordionItem: "",
   };
 
-  toggleAccordion = () => {
+  toggleAccordion = (e) => {
+    console.log("acc-ID:", e.target.value);
     this.setState((state) => ({
       accordionToggled: !state.accordionToggled,
+      clickedAccordionItem: e.target.value,
     }));
   };
 
@@ -89,8 +92,8 @@ class Homepage extends Component {
         <div className="section flex-column">
           {accordionData.map((accordionItem) => {
             return (
-              <div className="accordion-container">
-                <button onClick={this.toggleAccordion}>
+              <div className="accordion-container" key={accordionItem.id}>
+                <button onClick={this.toggleAccordion} value={accordionItem.id}>
                   {accordionItem.label}
                 </button>
                 {this.state.accordionToggled && <p>{accordionItem.content}</p>}
