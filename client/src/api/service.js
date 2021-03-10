@@ -26,6 +26,14 @@ const createEvent = (event) => {
     .catch(errorHandler);
 }
 
+const updateProfile = (profile) => {
+  // console.log('new thing is: ', newThing)
+  return service
+    .post('/profile/user/', profile)
+    .then(res => res.data)
+    .catch(errorHandler);
+}
+
 const updateEvent = (event, id) => {
   // console.log("updating event cloudinary: ", event)
   return service
@@ -36,7 +44,7 @@ const updateEvent = (event, id) => {
 };
 
 const apiService = {
-  service, handleUpload, createEvent, updateEvent
+  service, handleUpload, createEvent, updateEvent, updateProfile
 };
 
 export default apiService;

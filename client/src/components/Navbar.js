@@ -20,6 +20,9 @@ export default function Navbar(props) {
       {props.user ? (
         <>
           <li>
+            <Link to='/events'>CleanUp Events</Link>
+          </li>
+          <li>
             <Link to={`/profile/${props.user._id}`}>Profile</Link>
           </li>
           <li>

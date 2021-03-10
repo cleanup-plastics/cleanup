@@ -2,11 +2,11 @@ import "./App.css";
 import { Route, Redirect } from "react-router-dom";
 import CreateEvent from "./components/CreateEvent";
 import Events from "./components/Events";
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Navbar from './components/Navbar';
-import Profile from './components/Profile';
-import EditProfile from './components/EditProfile';
+import Signup from "./components/Signup";
+import Login from "./components/Login";
+import Navbar from "./components/Navbar";
+import Profile from "./components/Profile";
+import EditProfile from "./components/EditProfile";
 
 import React, { Component } from "react";
 

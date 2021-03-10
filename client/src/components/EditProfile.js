@@ -11,7 +11,7 @@ export default class EditProfile extends Component {
 
     this.state = {
       user:null,
-      imagePath: "",
+      imageUrl: "",
       redirect: null
     };
     this.handleChange = this.handleChange.bind(this);
@@ -48,7 +48,7 @@ export default class EditProfile extends Component {
 
   handleFileUpload = e => {
     const uploadData = new FormData();
-    uploadData.append("imagePath", e.target.files[0]);
+    uploadData.append("imageUrl", e.target.files[0]);
 
     console.log("THIS IS FILE UPLOAD")
 
@@ -57,7 +57,7 @@ export default class EditProfile extends Component {
       .handleUpload(uploadData)
       .then(response => {
         console.log("THIS IS THE RESPONSE", response);
-        this.setState({ imagePath: response.secure_url });
+        this.setState({ imageUrl: response.secure_url });
       })
       .catch(err => {
         console.log("Error while uploading the file: ", err);
@@ -77,17 +77,17 @@ export default class EditProfile extends Component {
     const lastName = this.state.lastName;
     console.log("LASTNAME: ", lastName)
 
-    const imagePath = this.state.imagePath;
-    console.log("PICTURE: ", imagePath)
+    const imageUrl = this.state.imageUrl;
+    console.log("PICTURE: ", imageUrl)
 
       axios
       .put(`http://localhost:5005/api/profile/user/${id}`, {
         firstName,
         lastName,
-        imagePath
+        imageUrl
       })
       .then((response) => {
-        console.log("PUT METHOD IS DONE", response) // do I really need to parse response?
+        console.log("PUT METHOD IS DONE", response)
         this.setState({ redirect: `/profile/${this.props.user._id}` });
       })
       .catch(err => {
@@ -96,6 +96,9 @@ export default class EditProfile extends Component {
     };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -117,19 +120,19 @@ export default class EditProfile extends Component {
             onChange={this.handleChange}
           />
 
-          <label htmlFor="image">Profile Picture: </label>
+          <label htmlFor="imageUrl">Profile Picture: </label>
           <input
             type="file"
-            id="imagePath"
-            name="imagePath"
-            value={this.state.imagePath}
+            id="imageUrl"
+            name="imageUrl"
+            // value={this.state.imageUrl}
             onChange={this.handleFileUpload}
           />
 
           <button type="submit" >Save Changes</button>
         </form>
 
-        <Link to={"/profile/user/"}>Back</Link>
+        <Link to={`/profile/${this.props.user._id}`}>Back</Link>
       </div>
     )
   }

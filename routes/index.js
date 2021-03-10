@@ -1,7 +1,7 @@
 const Event = require("../models/Event");
+const User = require("../models/User.model");
 const router = require("express").Router();
 const { uploader, cloudinary } = require('../config/cloudinary');
-const User = require("../models/User.model");
 
 // to get all the events
 
@@ -132,6 +132,40 @@ router.post("/events", uploader.single("imageUrl"), (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+});
+
+// to get a user
+
+router.get("/profile/user/:id", (req, res, next) => {
+  User.findById(req.params.id).then((user) => {
+    res.status(200).json(user);
+  })
+  .catch(err => {
+    next(err)
+  })
+});
+
+// to update user info
+
+router.put("/profile/user/:id", (req, res, next) => {
+  console.log("router at edit profile triggered")
+  const {
+    firstName,
+    lastName,
+    imageUrl
+  } = req.body;
+  User.findByIdAndUpdate(req.params.id, {
+    firstName,
+    lastName,
+    imageUrl
+  }, 
+  { new:true })
+  .then(profile => {
+    res.status(200).json(profile)
+  })
+  .catch(err => {
+    next(err)
+  })
 });
 
 module.exports = router;
