@@ -33,13 +33,23 @@ class Events extends Component {
 
 
   render() {
+    // console.log('logging props:', this.props.user._id)
+
+    const userID = this.props.user._id;
+
     const eventList = this.state.events.map((event) => {
-      console.log('logging the event:', event)
+
       return (
-        <EventItem event={event}/>
+        <EventItem
+          event={event}
+          user={userID}
+          getData={this.getData}
+          key={event._id}
+        />
       );
     });
     console.log("state at events.js", this.state.events)
+
 
     return (
       <div>

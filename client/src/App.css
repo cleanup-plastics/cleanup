@@ -1,41 +1,32 @@
+/* 
+color palette:
+#75cfb8
+#bbdfc8
+#f0e5d8
+#ffc478
+#0B4F6C */
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  width: 100vw;
+   background-color: #f0e5d8;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  color:#75cfb8
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h2 {
+  color:#75cfb8
 }
 
-.App-link {
-  color: #61dafb;
+h3 {
+  color:#ffc478
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 .marker-btn {
   background: none;
@@ -48,3 +39,5 @@
   height: 20px;
   background: none;
 }
+
+
