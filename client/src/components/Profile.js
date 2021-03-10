@@ -40,8 +40,8 @@ export default class Profile extends Component {
     if (!this.state.user) return <></>;
     else
     return (
-
       <div>
+      <img src={this.state.user.imageUrl} alt="your profile pic" />
         <h4>{this.state.user.username}</h4>
         <p>{this.state.user.firstName}</p>
         <p>{this.state.user.lastName}</p>
