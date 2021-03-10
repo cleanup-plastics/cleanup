@@ -28,19 +28,9 @@ const createEvent = (event) => {
     .catch(errorHandler);
 }
 
-const updateEvent = (event, id) => {
-   console.log('updating event cloudinary: ', event)
-  return service
-    //how to retrieve the eventID for route?
-    .put(`/events/${id}`, event)
-    .then((res) => res.data)
-    .catch(errorHandler);
-};
 
-export default {
-  service,
-  handleUpload,
-  createEvent,
-  updateEvent,
- 
-};
+const apiService = {
+  service, handleUpload, createEvent
+}
+
+export default apiService;

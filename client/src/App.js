@@ -2,11 +2,13 @@ import "./App.css";
 import { Route, Redirect } from "react-router-dom";
 import CreateEvent from "./components/CreateEvent";
 import Events from "./components/Events";
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Navbar from './components/Navbar';
+import EventToSave from './components/EventToSave';
+import SavedEvents from './components/SavedEvents';
 import EditEvent from "./components/EditEvent";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
 import Homepage from "./components/Homepage";
-import Navbar from "./components/Navbar";
 
 import React, { Component } from "react";
 
@@ -35,14 +37,20 @@ class App extends Component {
           path="/events"
           render={(props) => {
             if (this.state.user) {
-              return <Events user={this.state.user} {...props} />;
-            } else return <Redirect to="/login" />;
+              return <Events user={this.state.user} {...props}/>
+            } else return <Redirect to='/login' />
           }}
         />
-        <Route
-          exact
-          path="/events/create"
-          render={(props) => <CreateEvent user={this.state.user} {...props} />}
+
+        <Route exact path="/events/create" 
+        render={(props) => <CreateEvent user={this.state.user} {...props}/> }
+        />
+        <Route exact path="/events/:id" 
+       render={(props) => <EventToSave user={this.state.user} {...props} />}
+       />
+            
+        <Route exact path="/:id/savedEvents" 
+        render={(props) => <SavedEvents user={this.state.user} {...props}/> }
         />
 
         <Route
