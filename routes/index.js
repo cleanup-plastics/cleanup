@@ -71,7 +71,7 @@ router.put("/events/:id", uploader.single("image"), (req, res, next) => {
 router.delete("/events/:id", (req, res, next) => {
   Event.findByIdAndDelete(req.params.id)
   .then(event => {
-    if (event.imagePath) {
+    if (event.imageUrl) {
       cloudinary.uploader.destroy(event.publicId);
     }
     res.status(200).json({message: "event deleted"})

@@ -46,7 +46,7 @@ export default class Map extends Component {
     this.setState({ mounted: true })
   }
 
-
+ 
   render() {
     if(!this.props.events) {
       return (
@@ -86,20 +86,17 @@ export default class Map extends Component {
             >
               <div>
                 <h4>{this.state.selectedEvent.title}</h4>
-                  <p>Date:{this.state.selectedEvent.date}</p>
-                  {/* <Link to={`/events/${this.props.event._id}/edit`}>Show Details</Link> */}
-                  
+                  <p>Date:{this.state.selectedEvent.date}</p>                 
                  <button onClick={() => this.toggleEventDetails(this.state.selectedEvent)}>{this.state.toggled ? "Hide details" : "Show Details"}</button>
                     <p>{this.state.toggled  && <p>{this.state.selectedEvent.description} <br/>
                     <b>Location:</b> {this.state.selectedEvent.location} <br/>
-                    <><button><Link to={'/events/saved'}>Save Event</Link></button></></p>}</p>
+                    <><button><Link to={`/events/${this.state.selectedEvent._id}`}>Save Event</Link></button></></p>}</p>
                 
                   <button onClick={this.deselectEvent}>Close</button>
               </div>
             </Popup>
           ) : null}
         </ReactMapGL>
-        
       </div>
     )
   }

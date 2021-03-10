@@ -5,6 +5,8 @@ import Events from "./components/Events";
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import EventToSave from './components/EventToSave';
+import SavedEvents from './components/SavedEvents';
 
 import React, { Component } from "react";
 
@@ -29,14 +31,26 @@ class App extends Component {
          // component={Events} 
            render={props => {
             if (this.state.user) {
-              return <Events {...props} />
+              return <Events {...props}/>
             } else return <Redirect to='/login' />
           }}
         />
+      
+
+
         <Route exact path="/events/create" 
-        render={(props) => <CreateEvent user={this.state.user}/> }
+        render={(props) => <CreateEvent user={this.state.user} {...props}/> }
         />
-        
+
+
+       <Route exact path="/events/:id" 
+       render={(props) => <EventToSave user={this.state.user} {...props} />}
+       />
+
+        <Route exact path="/:id/savedEvents" 
+        render={(props) => <SavedEvents user={this.state.user} {...props}/> }
+        />
+
         <Route
           exact path='/signup'
           // 'render prop' to pass props in routing
