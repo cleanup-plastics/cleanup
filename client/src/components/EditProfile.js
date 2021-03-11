@@ -62,7 +62,7 @@ export default class EditProfile extends Component {
       });
   };
 
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
 
     event.preventDefault();
 
