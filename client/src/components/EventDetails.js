@@ -41,9 +41,11 @@ class EventDetails extends Component {
             </button>
           </div>
         ) : (
-          <button className="btn event-btn">
-            <Link to={`/events/${this.props.event._id}`}>Save the Date</Link>
-          </button>
+          <div>
+            <button className="btn event-btn">
+              <Link to={`/events/${this.props.event._id}`}>Save the Date</Link>
+            </button>
+          </div>
         )}
       </div>
     );

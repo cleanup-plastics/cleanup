@@ -52,7 +52,7 @@ class Events extends Component {
 
 
     return (
-      <div>
+      <div className="section">
         <h1>Events</h1>
 
         <button>

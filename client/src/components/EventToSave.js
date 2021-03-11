@@ -68,27 +68,39 @@ export default class SavedEvents extends Component {
     }
 
     return (
-       <div>
-       <h3>{this.state.event.description}</h3>
-        <p><b>Date:</b> {this.state.event.date}</p>
-        <p><b>Time:</b>{this.state.event.time}</p>
-        <p><b>Location:</b>{this.state.event.location}</p>
-        <p><b>Street:</b> {this.state.event.street}</p>
+      <div>
+        <h3>{this.state.event.description}</h3>
+        <p>
+          <b>Date: </b> {this.state.event.date}
+        </p>
+        <p>
+          <b>Time: </b>
+          {this.state.event.time}
+        </p>
+        <p>
+          <b>Location: </b>
+          {this.state.event.location}
+        </p>
+        <p>
+          <b>Street: </b> {this.state.event.street}
+        </p>
         <img
           src={this.state.event.imageUrl}
           alt="event"
           style={{ width: "200px" }}
         />
-         <form onSubmit={(event) => this.saveEvent(event)}>
-         <input
-              type="hidden"
-              id="savedEvents"
-              name="savedEvents"
-              value={this.props.user._id}
-            />
-             <button type="submit">Add to your List</button>
+        <form onSubmit={(event) => this.saveEvent(event)}>
+          <input
+            type="hidden"
+            id="savedEvents"
+            name="savedEvents"
+            value={this.props.user._id}
+          />
+          <button type="submit" className="btn event-btn">
+            Add to your List
+          </button>
         </form>
-       </div>
-    )
+      </div>
+    );
   }
 }
