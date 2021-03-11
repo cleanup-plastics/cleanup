@@ -29,6 +29,21 @@
   transition: transform .2s;
 } */
 
+.btn {
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.4s;
+  margin: 2px 10px;
+}
+.event-btn {
+  background-color: #FFC478;
+}
+.event-btn:hover {
+  background-color: #75CFB8;
+}
+
 .profilePicture {
   width: 150px;
   height: 150px;
