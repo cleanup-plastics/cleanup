@@ -22,9 +22,9 @@ export default function Navbar(props) {
           <li>
             <Link to='/events'>CleanUp Events</Link>
           </li>
-          {/* <li>
-            <Link to='/:id/savedEvents'>Saved Events</Link>
-          </li> */}
+          <li>
+            <Link to={`/${props.user._id}/savedEvents`}>My Saved Events</Link>
+          </li>
           <li>
             <Link to={`/profile/${props.user._id}`}>Profile</Link>
           </li>

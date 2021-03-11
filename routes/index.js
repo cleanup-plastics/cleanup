@@ -44,11 +44,10 @@ router.put("/events/:id", (req, res, next) => {
     street,
     city,
     country,
-    imageUrl,
+    imageUrl
   } = req.body;
   Event.findByIdAndUpdate(
     req.params.id,
-
     {
       title,
       date,
@@ -58,11 +57,13 @@ router.put("/events/:id", (req, res, next) => {
       street,
       city,
       country,
-      imageUrl,
+      //coordinates,
+      imageUrl
     },
     { new: true }
   )
     .then((event) => {
+      console.log('this is the updated event', event)
       res.status(200).json(event);
     })
     .catch((err) => {

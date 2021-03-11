@@ -69,6 +69,8 @@ export default class Map extends Component {
               <Marker key={pin._id} 
             latitude={pin.coordinates[1]}
             longitude={pin.coordinates[0]}
+            offsetTop={-20} 
+            offsetLeft={-10}
             >
             <button 
             className="marker-btn"
@@ -83,6 +85,7 @@ export default class Map extends Component {
             <Popup 
             latitude={this.state.selectedEvent.coordinates[1]}
             longitude={this.state.selectedEvent.coordinates[0]}
+            closeButton={false}
             >
               <div>
                 <h4>{this.state.selectedEvent.title}</h4>
@@ -90,7 +93,7 @@ export default class Map extends Component {
                  <button onClick={() => this.toggleEventDetails(this.state.selectedEvent)}>{this.state.toggled ? "Hide details" : "Show Details"}</button>
                     <p>{this.state.toggled  && <p>{this.state.selectedEvent.description} <br/>
                     <b>Location:</b> {this.state.selectedEvent.location} <br/>
-                    <><button><Link to={`/events/${this.state.selectedEvent._id}`}>Save Event</Link></button></></p>}</p>
+                    <><button><Link to={`/events/${this.state.selectedEvent._id}`}>Save the date</Link></button></></p>}</p>
                 
                   <button onClick={this.deselectEvent}>Close</button>
               </div>
