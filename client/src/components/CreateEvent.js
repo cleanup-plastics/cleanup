@@ -200,7 +200,6 @@ class CreateEvent extends Component {
             <option value="">All</option>
             {countryOptions}
           </select>
-          </select>
 
           <button className="profileBtn" type="submit">Post this event!</button>
 
