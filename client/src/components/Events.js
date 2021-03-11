@@ -3,25 +3,23 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import EventItem from "./EventItem";
-import Map from './Map'
+import Map from "./Map";
 
 class Events extends Component {
-
   state = {
-    events: [], 
+    events: [],
   };
 
-
-   componentDidMount() {
-    this.getData()
-    console.log('the event componentdidmount')
+  componentDidMount() {
+    this.getData();
+    console.log("the event componentdidmount");
   }
 
   getData = () => {
     axios
       .get("/api/events")
       .then((response) => {
-        console.log('response from API')
+        console.log("response from API");
         this.setState({
           events: response.data,
         });
@@ -31,14 +29,10 @@ class Events extends Component {
       });
   };
 
-
   render() {
-    // console.log('logging props:', this.props.user._id)
-
     const userID = this.props.user._id;
 
     const eventList = this.state.events.map((event) => {
-
       return (
         <EventItem
           event={event}
@@ -48,19 +42,20 @@ class Events extends Component {
         />
       );
     });
-    console.log("state at events.js", this.state.events)
-
 
     return (
-      <div>
+      <div className="section">
         <h1>Events</h1>
 
         <button>
           <Link to={"/events/create"}>Create an event!</Link>
         </button>
-
-        <div>{eventList}</div>
-        <div><Map events={this.state.events}/></div>
+        <div className="flex-container">
+          <div className="eventList">{eventList}</div>
+          <div className="map">
+            <Map events={this.state.events} />
+          </div>
+        </div>
       </div>
     );
   }

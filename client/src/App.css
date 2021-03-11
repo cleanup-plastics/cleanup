@@ -12,19 +12,19 @@ color palette:
 
 body {
   width: 100vw;
-   background-color: #f0e5d8;
+  background-color: #f0e5d8;
 }
 
 h1 {
-  color:#75cfb8
+  color: #75cfb8;
 }
 
 h2 {
-  color:#75cfb8
+  color: #75cfb8;
 }
 
 h3 {
-  color:#ffc478
+  color: #ffc478;
 }
 
 .marker-btn {
@@ -39,4 +39,14 @@ h3 {
   background: none;
 }
 
+.event-image {
+  width: 200px;
+}
 
+.map {
+  margin: 20px;
+}
+
+.eventList {
+  margin: 20px;
+}

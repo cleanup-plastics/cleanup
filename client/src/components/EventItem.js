@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EventDetails from "./EventDetails";
 
+
 class EventItem extends Component {
   state = {
     clickedEventId: "",

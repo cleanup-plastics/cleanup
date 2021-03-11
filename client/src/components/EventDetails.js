@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
 class EventDetails extends Component {
   deleteEvent = () => {
     const eventID = this.props.event._id;
@@ -26,10 +27,9 @@ class EventDetails extends Component {
         <p>Location: {this.props.event.location}</p>
         <p>Street: {this.props.event.street}</p>
 
-        <img
+        <img className="event-image"
           src={this.props.event.imageUrl}
           alt="event"
-          style={{ width: "200px" }}
         />
         {this.props.userID === this.props.event.owner && (
           <div>
