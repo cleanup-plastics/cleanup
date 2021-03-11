@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 export default class SavedEvents extends Component {
-
   constructor(props) {
     super(props);
 
@@ -16,8 +15,8 @@ export default class SavedEvents extends Component {
   }
 
   componentDidMount() {
-    this.getData()
-    console.log('the event componentdidmount')
+    this.getData();
+    console.log("the event componentdidmount");
   }
 
   getData = () => {
@@ -38,16 +37,15 @@ export default class SavedEvents extends Component {
   saveEvent = (event) => {
     event.preventDefault();
     const eventID = this.props.match.params.id;
-    const userID = this.props.user._id
-    console.log(eventID)
-    console.log(userID)
+    const userID = this.props.user._id;
+    console.log(eventID);
+    console.log(userID);
     axios
-      .put('/api/user/saveEvent', {
+      .put("/api/user/saveEvent", {
         params: {
           savedEvents: eventID,
-          currentUser: userID
-        }
-        
+          currentUser: userID,
+        },
       })
       .then(() => {
         console.log("axios put is done");
@@ -57,19 +55,20 @@ export default class SavedEvents extends Component {
       .catch((err) => {
         console.log("Error while updating the event: ", err);
       });
-  }
-
+  };
 
   render() {
-
     //console.log(this.props.user)
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }
 
     return (
-      <div>
-        <h3>{this.state.event.description}</h3>
+      <div className="section">
+        <h3>{this.state.event.title}</h3>
+        <p>
+          <b>Description: </b> {this.state.event.description}
+        </p>
         <p>
           <b>Date: </b> {this.state.event.date}
         </p>

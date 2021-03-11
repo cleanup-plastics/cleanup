@@ -57,6 +57,10 @@ h3 {
   text-decoration: none;
 }
 
+.navbar-menu a:hover {
+  text-decoration: underline;
+}
+
 .event-image {
   width: 200px;
   border-radius: 5px;
@@ -111,5 +115,9 @@ h3 {
 }
 
 .edit-btn a {
+  text-decoration: none;
+}
+
+.btn a {
   text-decoration: none;
 }

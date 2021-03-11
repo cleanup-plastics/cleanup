@@ -35,7 +35,8 @@ export default class SavedEvents extends Component {
       renderEvents = this.state.events.map((event, index) => {
         return (
           <div key={index} className="section">
-            <h2>{event.title}</h2>
+            <h1>My saved events</h1>
+            <h3>{event.title}</h3>
             <p>
               <strong> Location: </strong>
               {event.location}
