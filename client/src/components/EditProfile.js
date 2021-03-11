@@ -79,7 +79,7 @@ export default class EditProfile extends Component {
     console.log("PICTURE: ", imageUrl)
 
       axios
-      .put(`http://localhost:5005/api/profile/user/${id}`, {
+      .put(`/api/profile/user/${id}`, {
         firstName,
         lastName,
         imageUrl

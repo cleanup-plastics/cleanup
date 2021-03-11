@@ -86,7 +86,7 @@ class EditEvent extends Component {
     console.log('imageurl:', imageUrl)
 
     axios
-      .put(`http://localhost:5005/api/events/${eventID}`, {
+      .put(`/api/events/${eventID}`, {
         title,
         date,
         time,

@@ -16,7 +16,7 @@ export default class Profile extends Component {
     const userId = this.props.match.params.id;
     console.log(userId)
     axios
-    .get(`http://localhost:5005/api/profile/user/${userId}`)
+    .get(`/api/profile/user/${userId}`)
     .then((response) => {
       console.log(response)
       this.setState({
