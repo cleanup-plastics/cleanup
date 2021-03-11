@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import EventDetails from "./EventDetails";
 
-
 class EventItem extends Component {
   state = {
     clickedEventId: "",
@@ -17,13 +16,19 @@ class EventItem extends Component {
   };
 
   render() {
-  //  console.log(this.props.event._id);
+    //  console.log(this.props.event._id);
 
     return (
       <div>
         <h2>{this.props.event.title}</h2>
-        <p>Country: {this.props.event.country}</p>
-        <p>City: {this.props.event.city}</p>
+        <p>
+          <strong> Country: </strong>
+          {this.props.event.country}
+        </p>
+        <p>
+          <strong> City: </strong>
+          {this.props.event.city}
+        </p>
         <form onSubmit={this.toggleEventDetails}>
           <input type="hidden" name="eventId" value={this.props.event._id} />
           {this.state.toggled ? (

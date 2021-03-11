@@ -41,16 +41,12 @@ h3 {
 
 .event-image {
   width: 200px;
+  border-radius: 5px;
 }
 
 .map {
   margin: 20px;
   flex: 1;
-  /* position:fixed;
-  top: 100px;
-  right: 50px; */
-  /* align-items: flex-start; */
-  
 }
 
 .eventList {

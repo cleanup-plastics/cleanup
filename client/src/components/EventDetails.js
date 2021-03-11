@@ -20,11 +20,26 @@ class EventDetails extends Component {
     // console.log(this.props.event)
     return (
       <div>
-        <p>Description: {this.props.event.description}</p>
-        <p>Date: {this.props.event.date}</p>
-        <p>Time: {this.props.event.time}</p>
-        <p>Location: {this.props.event.location}</p>
-        <p>Street: {this.props.event.street}</p>
+        <p>
+          <strong> Description: </strong>
+          {this.props.event.description}
+        </p>
+        <p>
+          <strong>Date: </strong>
+          {this.props.event.date}
+        </p>
+        <p>
+          <strong>Time: </strong>
+          {this.props.event.time}
+        </p>
+        <p>
+          <strong>Location: </strong>
+          {this.props.event.location}
+        </p>
+        <p>
+          <strong>Street: </strong>
+          {this.props.event.street}
+        </p>
 
         <img
           className="event-image"
