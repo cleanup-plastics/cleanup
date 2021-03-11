@@ -99,8 +99,17 @@ export default class EditProfile extends Component {
       return <Redirect to={this.state.redirect} />;
     }
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="containerHoriz">
+        <form className="profile f-form" onSubmit={this.handleSubmit}>
+        <label htmlFor="imageUrl">Profile Picture: </label>
+          <input
+            type="file"
+            id="imageUrl"
+            name="imageUrl"
+            // value={this.state.imageUrl}
+            onChange={this.handleFileUpload}
+          />
+        
         <label htmlFor="firstName">Name: </label>
           <input
             type="text"
@@ -119,19 +128,10 @@ export default class EditProfile extends Component {
             onChange={this.handleChange}
           />
 
-          <label htmlFor="imageUrl">Profile Picture: </label>
-          <input
-            type="file"
-            id="imageUrl"
-            name="imageUrl"
-            // value={this.state.imageUrl}
-            onChange={this.handleFileUpload}
-          />
-
-          <button type="submit" >Save Changes</button>
+          <button className="profileBtn" type="submit" >Save Changes</button>
         </form>
 
-        <Link to={`/profile/${this.props.user._id}`}>Back</Link>
+        {/* <Link to={`/profile/${this.props.user._id}`}>Back</Link> */}
       </div>
     )
   }

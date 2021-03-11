@@ -53,7 +53,7 @@ const mongoose = require('./db/index');
 // )
 
 
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo').default;
 
 app.use(
   session({
