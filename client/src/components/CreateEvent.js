@@ -3,13 +3,13 @@ import axios from "axios";
 import countries from "../countries.json";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import service from "../api/service"
+import service from "../api/service";
 
 class CreateEvent extends Component {
   state = {
     title: "",
     description: "",
-    imageUrl:"",
+    imageUrl: "",
     //use userID?
     //owner: userID,
     time: "",
@@ -30,23 +30,23 @@ class CreateEvent extends Component {
     });
   };
 
-  handleFileUpload = e => {
+  handleFileUpload = (e) => {
     //console.log('The file to be uploaded is: ', e.target.files[0]);
- 
+
     const uploadData = new FormData();
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new thing in '/api/things/create' POST route
-    uploadData.append('imageUrl', e.target.files[0]);
- 
+    uploadData.append("imageUrl", e.target.files[0]);
+
     service
       .handleUpload(uploadData)
-      .then(response => {
+      .then((response) => {
         // console.log('response is: ', response);
         // after the console.log we can see that response carries 'secure_url' which we can use to update the state
         this.setState({ imageUrl: response.secure_url });
       })
-      .catch(err => {
-        console.log('Error while uploading the file: ', err);
+      .catch((err) => {
+        console.log("Error while uploading the file: ", err);
       });
   };
 
@@ -74,7 +74,7 @@ class CreateEvent extends Component {
         time: this.state.time,
         date: this.state.date,
         country: this.state.country,
-        owner: this.props.user._id
+        owner: this.props.user._id,
       })
       .then(() => {
         this.setState({
@@ -95,8 +95,8 @@ class CreateEvent extends Component {
   };
 
   render() {
-    console.log('logging the props: ', this.props.user._id);
-    
+    console.log("logging the props: ", this.props.user._id);
+
     const countryOptions = countries.map((country) => {
       return (
         <option value={country} key={country}>
@@ -113,7 +113,7 @@ class CreateEvent extends Component {
       <div>
         <h1>Create a new event!</h1>
 
-        <form onSubmit={event => this.handleSubmit(event)}>
+        <form onSubmit={(event) => this.handleSubmit(event)}>
           <label htmlFor="title">Title: </label>
           <input
             type="text"
@@ -160,7 +160,7 @@ class CreateEvent extends Component {
             id="image"
             name="image"
             // value={this.state.image}
-            onChange={e => this.handleFileUpload(e)}
+            onChange={(e) => this.handleFileUpload(e)}
           />
 
           <label htmlFor="location">Name of location: </label>
@@ -200,7 +200,9 @@ class CreateEvent extends Component {
             {countryOptions}
           </select>
 
-          <button type="submit">Post this event!</button>
+          <button type="submit" className="btn event-btn">
+            Post this event!
+          </button>
         </form>
 
         <Link to={"/events"}>Back to events</Link>
