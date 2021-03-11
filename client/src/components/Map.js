@@ -55,7 +55,7 @@ export default class Map extends Component {
     }
     let pins = this.props.events
     return (
-      <div>
+      <div className="mapBox">
       <ReactMapGL 
       mapboxApiAccessToken={token}
       mapStyle='mapbox://styles/mapbox/streets-v11'

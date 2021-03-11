@@ -134,8 +134,6 @@ app.use('/api/auth', auth);
 const savedEvents = require('./routes/savedevents')
 app.use('/api', savedEvents);
 
-
-
 // this is for deployment on heroku
 
 const path = require('path');
