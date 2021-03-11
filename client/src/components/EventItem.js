@@ -26,9 +26,9 @@ class EventItem extends Component {
         <form onSubmit={this.toggleEventDetails}>
           <input type="hidden" name="eventId" value={this.props.event._id} />
           {this.state.toggled ? (
-            <button>Hide details</button>
+            <button className="btn event-btn">Hide details</button>
           ) : (
-            <button>Show details</button>
+            <button className="btn event-btn">Show details</button>
           )}
         </form>
         {this.state.toggled && (

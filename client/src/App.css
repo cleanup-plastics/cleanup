@@ -12,19 +12,19 @@ color palette:
 
 body {
   width: 100vw;
-   background-color: #f0e5d8;
+  background-color: #f0e5d8;
 }
 
 h1 {
-  color:#75cfb8
+  color: #75cfb8;
 }
 
 h2 {
-  color:#75cfb8
+  color: #75cfb8;
 }
 
 h3 {
-  color:#ffc478
+  color: #ffc478;
 }
 
 h4 {
@@ -43,6 +43,27 @@ h4 {
   background: none;
 }
 
+.navbar {
+  background-color: #75cfb8;
+  padding: 10px;
+}
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navbar-menu li {
+  list-style-type: none;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+}
+
+.navbar-menu a:hover {
+  text-decoration: underline;
+}
 
 .event-image {
   width: 200px;
@@ -98,5 +119,9 @@ h4 {
 }
 
 .edit-btn a {
+  text-decoration: none;
+}
+
+.btn a {
   text-decoration: none;
 }

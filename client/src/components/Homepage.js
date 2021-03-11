@@ -38,7 +38,7 @@ class Homepage extends Component {
         </header>
         <div className="section">
           <h1>Welcome to cleanup - aiming for a plastic-free world</h1>
-          <p>
+          <p className="homepage-p">
             A recent study released by the 5 Gyres Institute estimates that
             there are currently 5.25 trillion plastic particles in the ocean.
             Sources of this waste are wide ranging including plastic fishing
@@ -96,7 +96,9 @@ class Homepage extends Component {
                 <button onClick={this.toggleAccordion} value={accordionItem.id}>
                   {accordionItem.label}
                 </button>
-                {this.state.accordionToggled && <p>{accordionItem.content}</p>}
+                {this.state.accordionToggled && (
+                  <p className="accordion-p">{accordionItem.content}</p>
+                )}
               </div>
             );
           })}

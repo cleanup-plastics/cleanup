@@ -52,10 +52,10 @@ class Events extends Component {
 
 
     return (
-      <div>
+      <div className="section">
         <h1>Events</h1>
 
-        <button>
+        <button className="btn event-btn">
           <Link to={"/events/create"}>Create an event!</Link>
         </button>
         <div className="map-event-container">
