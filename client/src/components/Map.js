@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import { Link } from "react-router-dom";
-
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const token= 'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
 
@@ -9,8 +9,8 @@ export default class Map extends Component {
 
   state = {
     viewport: {
-      width: 300,
-      height: 400,
+      width: 400,
+      height: 500,
       latitude: 52.52,
       longitude: 13.405,
       zoom: 6

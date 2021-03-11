@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
 class EventDetails extends Component {
   deleteEvent = () => {
     const eventID = this.props.event._id;
@@ -18,16 +17,17 @@ class EventDetails extends Component {
   };
 
   render() {
-   // console.log(this.props.event)
+    // console.log(this.props.event)
     return (
       <div>
-        <p>{this.props.event.description}</p>
+        <p>Description: {this.props.event.description}</p>
         <p>Date: {this.props.event.date}</p>
         <p>Time: {this.props.event.time}</p>
         <p>Location: {this.props.event.location}</p>
         <p>Street: {this.props.event.street}</p>
 
-        <img className="event-image"
+        <img
+          className="event-image"
           src={this.props.event.imageUrl}
           alt="event"
         />
@@ -39,7 +39,6 @@ class EventDetails extends Component {
             <button onClick={this.deleteEvent}>Delete</button>
           </div>
         )}
-
       </div>
     );
   }

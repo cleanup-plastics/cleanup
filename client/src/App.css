@@ -45,8 +45,14 @@ h3 {
 
 .map {
   margin: 20px;
+  flex: 1;
+  /* position:fixed;
+  top: 100px;
+  right: 50px; */
+  
 }
 
 .eventList {
   margin: 20px;
+  flex: 1;
 }
