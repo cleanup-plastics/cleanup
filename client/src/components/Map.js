@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import { Link } from "react-router-dom";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-// const token= 'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
+const token= 'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
 
 export default class Map extends Component {
 
@@ -54,9 +55,9 @@ export default class Map extends Component {
     }
     let pins = this.props.events
     return (
-      <div className="mapBox">
+      <div>
       <ReactMapGL 
-      mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
+      mapboxApiAccessToken={token}
       mapStyle='mapbox://styles/mapbox/streets-v11'
       {...this.state.viewport}
       onViewportChange={(viewport) => {
