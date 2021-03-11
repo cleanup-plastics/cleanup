@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import CreateEvent from "./components/CreateEvent";
 import Events from "./components/Events";
 import Signup from "./components/Signup";
@@ -44,13 +44,14 @@ class App extends Component {
             } else return <Redirect to='/login' />
           }}
         />
-
+        <Switch>
         <Route exact path="/events/create" 
         render={(props) => <CreateEvent user={this.state.user} {...props}/> }
         />
         <Route exact path="/events/:id" 
        render={(props) => <EventToSave user={this.state.user} {...props} />}
        />
+       </Switch>
             
         <Route exact path="/:id/savedEvents" 
         render={(props) => <SavedEvents user={this.state.user} {...props}/> }

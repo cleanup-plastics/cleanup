@@ -31,13 +31,17 @@ class EventDetails extends Component {
           alt="event"
           style={{ width: "200px" }}
         />
-        {this.props.userID === this.props.event.owner && (
+        {this.props.userID === this.props.event.owner ? (
           <div>
             <button>
               <Link to={`/events/${this.props.event._id}/edit`}>Edit</Link>
             </button>
             <button onClick={this.deleteEvent}>Delete</button>
           </div>
+        ) : (
+          <button>
+              <Link to={`/events/${this.props.event._id}`}>Save the Date</Link>
+            </button> 
         )}
 
       </div>
