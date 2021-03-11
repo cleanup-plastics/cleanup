@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { signup } from '../services/auth';
+import './Signup.css'
+import { Link } from "react-router-dom";
 
 export default class Signup extends Component {
 
@@ -41,38 +43,52 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Signup</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username: </label>
+      <div className="user">
+    <header className="user__header">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
+        <h2 className="user__title">Signup</h2>
+    </header>
+
+        <form className="signup-form" onSubmit={this.handleSubmit}>
+          <div className="signup-form__group">
           <input
+            className="signup-form__input"
+            placeholder= "Username"
             type="text"
             name="username"
             value={this.state.username}
             onChange={this.handleChange}
             id="username"
           />
-          <label htmlFor="email">eMail: </label>
+          </div>
+          <div className="signup-form__group">
           <input
+            placeholder="eMail"
+            className="signup-form__input"
             type="text"
             name="email"
             value={this.state.email}
             onChange={this.handleChange}
             id="email"
           />
-          <label htmlFor="password">Password: </label>
+          </div>
+          <div className="signup-form__group">
           <input
+            placeholder="password"
+            className="signup-form__input"
             type="password"
             name="password"
             value={this.state.password}
             onChange={this.handleChange}
             id="password"
           />
-          <button type="submit">Sign Up</button>
+          </div>
+          <button className="btn-signup" type="submit">Create an Account</button>
           {this.state.message && (
             <h3>{this.state.message}</h3>
           )}
         </form>
+        <div><p className="login-link">Already a plastic hater? <Link className="link-login" to={"/login"}>Log in</Link></p></div>
       </div>
     )
   }

@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { login } from '../services/auth';
+import './Signup.css'
 
 
 export default class Login extends Component {
@@ -40,26 +41,35 @@ export default class Login extends Component {
   }
   render() {
     return (
-      <div>
-        <h2>Login</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username: </label>
+      <div className="user">
+        <header className="user__header">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
+        <h2 className="user__title">Login</h2>
+    </header>
+        <form className="signup-form" onSubmit={this.handleSubmit}>
+          <div className="signup-form__group">
           <input
+            className="signup-form__input"
+            placeholder= "Username"
             type="text"
             name="username"
             value={this.state.username}
             onChange={this.handleChange}
             id="username"
           />
-          <label htmlFor="password">Password: </label>
+          </div>
+          <div className="signup-form__group">
           <input
+            placeholder="password"
+            className="signup-form__input"
             type="password"
             name="password"
             value={this.state.password}
             onChange={this.handleChange}
             id="password"
           />
-          <button type="submit">Log in</button>
+          </div>
+          <button className="btn-signup" type="submit">Log in</button>
           {this.state.message && (
             <h3>{this.state.message}</h3>
           )}
