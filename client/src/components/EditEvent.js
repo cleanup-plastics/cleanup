@@ -123,10 +123,10 @@ class EditEvent extends Component {
     if (!this.state.event) return <></>;
     else
       return (
-        <div>
+        <div className="containerHoriz">
           <h1>Edit this event:</h1>
 
-          <form onSubmit={(event) => this.handleSubmit(event)}>
+          <form className="f-form eventform" onSubmit={(event) => this.handleSubmit(event)}>
             <label htmlFor="title">Title: </label>
             <input
               type="text"
@@ -213,7 +213,7 @@ class EditEvent extends Component {
               {countryOptions}
             </select>
 
-            <button type="submit">Edit</button>
+            <button className="profileBtn" type="submit">Edit</button>
           </form>
 
           <Link to={"/events"}>Back to events</Link>

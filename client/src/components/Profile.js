@@ -42,11 +42,11 @@ export default class Profile extends Component {
     return (
       <div className="containerHoriz">
         <div className="profile">
-          <img className="profilePicture" src={this.state.user.imageUrl} alt="your profile pic" />
+          <img className="profilePicture" src={this.state.user.imageUrl} alt="your profile pic 🐨" />
           <h4>{this.state.user.username}</h4>
           <p>{this.state.user.firstName}</p>
           <p>{this.state.user.lastName}</p>
-          <Link to={`/profile/user/${this.props.user._id}`}><button className="event-btn btn" onClick={this.toggleEditForm}>Edit Profile</button></Link>
+          <Link to={`/profile/user/${this.props.user._id}`}><button className="profileBtn" onClick={this.toggleEditForm}>Edit Profile</button></Link>
         </div>
       </div>
     )

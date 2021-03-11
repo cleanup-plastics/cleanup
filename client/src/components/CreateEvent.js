@@ -110,10 +110,10 @@ class CreateEvent extends Component {
     }
 
     return (
-      <div>
+      <div className="containerHoriz">
         <h1>Create a new event!</h1>
 
-        <form onSubmit={event => this.handleSubmit(event)}>
+        <form className="f-form eventform" onSubmit={event => this.handleSubmit(event)}>
           <label htmlFor="title">Title: </label>
           <input
             type="text"
@@ -200,7 +200,7 @@ class CreateEvent extends Component {
             {countryOptions}
           </select>
 
-          <button type="submit">Post this event!</button>
+          <button className="profileBtn" type="submit">Post this event!</button>
         </form>
 
         <Link to={"/events"}>Back to events</Link>
