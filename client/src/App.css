@@ -40,3 +40,59 @@ h3 {
 }
 
 
+.event-image {
+  width: 200px;
+  border-radius: 5px;
+}
+
+.map {
+  margin: 20px;
+  flex: 1;
+}
+
+.eventList {
+  margin: 20px;
+  flex: 1;
+}
+
+.map-event-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  align-items: flex-start;
+}
+
+.eventItem {
+  margin: 30px 0;
+}
+
+.btn {
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.4s;
+  margin: 2px 10px;
+}
+
+.event-btn {
+  background-color: #ffc478;
+}
+
+.event-btn:hover {
+  background-color: #75cfb8;
+}
+
+.delete-btn {
+  background-color: #0b4f6c;
+  color: #fff;
+}
+
+.edit-btn {
+  background-color: #75cfb8;
+}
+
+.edit-btn a {
+  text-decoration: none;
+}
