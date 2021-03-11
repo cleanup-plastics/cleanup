@@ -48,10 +48,10 @@ class EventDetails extends Component {
         />
         {this.props.userID === this.props.event.owner && (
           <div>
-            <button>
+            <button className="btn edit-btn">
               <Link to={`/events/${this.props.event._id}/edit`}>Edit</Link>
             </button>
-            <button onClick={this.deleteEvent}>Delete</button>
+            <button onClick={this.deleteEvent} className="btn delete-btn">Delete</button>
           </div>
         )}
       </div>
