@@ -49,10 +49,19 @@ h3 {
   /* position:fixed;
   top: 100px;
   right: 50px; */
+  /* align-items: flex-start; */
   
 }
 
 .eventList {
   margin: 20px;
   flex: 1;
+}
+
+.map-event-container {
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  align-items: flex-start;
 }

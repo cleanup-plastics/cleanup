@@ -50,7 +50,7 @@ class Events extends Component {
         <button>
           <Link to={"/events/create"}>Create an event!</Link>
         </button>
-        <div className="flex-container">
+        <div className="map-event-container">
           <div className="eventList">{eventList}</div>
           <div className="map">
             <Map events={this.state.events} />
