@@ -61,3 +61,16 @@ h3 {
   align-items: flex-start;
   align-items: flex-start;
 }
+
+.event-btn {
+  background-color: #ffc478;
+      padding: 8px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.event-btn:hover {
+  background-color: #75cfb8;
+}

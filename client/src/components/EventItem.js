@@ -16,8 +16,7 @@ class EventItem extends Component {
   };
 
   render() {
-    //  console.log(this.props.event._id);
-
+   
     return (
       <div>
         <h2>{this.props.event.title}</h2>
@@ -32,9 +31,9 @@ class EventItem extends Component {
         <form onSubmit={this.toggleEventDetails}>
           <input type="hidden" name="eventId" value={this.props.event._id} />
           {this.state.toggled ? (
-            <button>Hide details</button>
+            <button className="event-btn">Hide details</button>
           ) : (
-            <button>Show details</button>
+            <button className="event-btn">Show details</button>
           )}
         </form>
         {this.state.toggled && (
