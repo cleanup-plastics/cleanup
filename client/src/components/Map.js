@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import { Link } from "react-router-dom";
 
-
-const token= 'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
+// const token= 'pk.eyJ1IjoiZWx2aWFzaSIsImEiOiJja2w1ZjFhNDgwbms4MzBwNmpmcTUzaXU5In0.tyY-4o-vyzl93U7XLFjekQ'
 
 export default class Map extends Component {
 
@@ -57,7 +56,7 @@ export default class Map extends Component {
     return (
       <div className="mapBox">
       <ReactMapGL 
-      mapboxApiAccessToken={token}
+      mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
       mapStyle='mapbox://styles/mapbox/streets-v11'
       {...this.state.viewport}
       onViewportChange={(viewport) => {
