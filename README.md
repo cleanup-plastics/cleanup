@@ -15,6 +15,7 @@ People may post an event or find an existing event on the map and save it to the
 
 - full-stack web application with CRUD functionalities 
 - built with React, MongoDB, Node.js, HTML, CSS 
+- front-end and back-end connected by building a RESTful API
 - developed in team work and pair programming
 
 
